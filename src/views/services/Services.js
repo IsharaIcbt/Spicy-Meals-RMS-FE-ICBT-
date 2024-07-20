@@ -17,6 +17,12 @@ function Services() {
 
       <div className={"mb-3 mt-2 main_title"}>
 
+      </div> <div className={"mb-3 mt-2 main_title"}>
+
+      </div> <div className={"mb-3 mt-2 main_title"}>
+
+      </div> <div className={"mb-3 mt-2 main_title"}>
+
       </div>
 
       <FooterPage />

@@ -1,0 +1,75 @@
+
+@import "../src/assets/scss/common/colors.scss";
+
+.navbar-container {
+  .nav-logo-wrapper {
+    .brand-logo {
+      img {
+        width: 62px;
+      }
+    }
+  }
+  .navbar_main{
+
+  .top-navigate-btns {
+      display: flex;
+      align-items: center;
+
+      div {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .nav_itm{
+        padding: 4px 8px;
+      }
+
+      p {
+        margin: 0!important;
+        font-size: 16px;
+      }
+
+      .top-wrapper, .top-wrapper-active {
+        padding: 4px 8px;
+        margin-right: 5px;
+        border-radius: 5px;
+
+        svg {
+          margin-right: 10px;
+          width: 20px;
+        }
+      }
+
+      .top-wrapper {
+        color: #6E6B7B;
+
+        svg {
+          //margin-right: 5px;
+          //width: 22px;
+        }
+      }
+
+      .top-wrapper-active {
+        background: $primary;
+        color: white !important;
+
+        svg {
+          //margin-right: 10px;
+          //width: 20px;
+        }
+      }
+    }
+  }
+
+}
+[dir] .form-check-input:checked {
+  background-color: #FD7E14FF;
+  border-color: #FD7E14FF;
+}
+
+/*
+.header-navbar{
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+*/

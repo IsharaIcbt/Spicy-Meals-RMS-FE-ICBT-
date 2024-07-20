@@ -1,0 +1,114 @@
+
+.home_page {
+  .main_sub_header{
+    font-size: 70px;
+    font-weight: 700;
+    font-family: "Calibri", serif;
+    color: rgba(0, 0, 0, 0.35);
+  }
+  h1 {
+    font-size: 45px;
+  }
+  h2 {
+    font-size: 25px;
+  }
+
+  .custom-card {
+    width: 25%;
+    background: rgba(255, 255, 255, 0.4); // Adjust the transparency here (0.7 is an example)
+    border-radius: 8px; // Add border-radius if desired
+    margin: auto; // Center the card horizontally
+    padding: 20px;
+  }
+
+  .form-label {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+  }
+
+  .form_head {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .btn_sch {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff !important;
+  }
+
+  .introduction_page {
+    height: 85vh;
+    h2 {
+      font-size: 90px;
+      font-weight: 700;
+      font-family: "Calibri", serif;
+      color: rgba(0, 0, 0, 0.82);
+    }
+
+    h2 span {
+      color: rgba(34, 41, 47, 0.7);
+      font-size: 40px;
+    }
+
+    .paragraph-wrap {
+      padding: 12px;
+      color: #000000;
+      font-size: 16px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+  }
+
+  .main_category {
+    margin: 0;
+    padding: 10px;
+    background: #F8F8FF;
+    background-size: cover;
+    height: 120vh !important;
+  }
+
+  .about_sriLanka {
+    height: 110vh;
+    h2 {
+      font-size: 30px;
+      padding-bottom: 20px;
+    }
+    .about_desc {
+      padding: 0 80px 80px 0;
+      line-height: 22px;
+      text-align: justify;
+      font-size: 16px;
+    }
+  }
+
+  .map_page {
+    height: 95vh;
+
+    h2 {
+      font-size: 100px;
+      font-weight: 700;
+      font-family: "Calibri", serif;
+      color: rgba(0, 0, 0, 0.82);
+    }
+    h2 span {
+      color: rgba(34, 41, 47, 0.7);
+      font-size: 40px;
+    }
+    .left_map {
+      padding: 0 !important;
+      margin: 0 !important;
+      color: white;
+      background: url("../../assets/images/home/travel_grid.png") no-repeat center;
+      background-size: cover;
+    }
+  }
+}
+
+
+
+
+
+
+
+

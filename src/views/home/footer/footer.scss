@@ -1,0 +1,42 @@
+.full_footer {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)),
+  url("../../../assets/images/home/Cover-banner.jpg") no-repeat;
+  color: white;
+  align-items: center;
+  background-size: cover;
+
+  #social_media {
+    padding: 100px 0;
+    height: 55vh;
+  }
+
+  #social_media p {
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+
+  .social_icons img {
+    width: 90px;
+    padding-right: 20px;
+    transition: 0.5s;
+  }
+
+  .social_icons a:hover img {
+    transform: translateY(-10px);
+  }
+
+  .footer-box {
+    padding: 20px;
+  }
+
+  .text-reset {
+    text-decoration: none !important;
+  }
+
+  .copyRight {
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+}

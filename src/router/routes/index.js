@@ -47,7 +47,10 @@ const Routes = [
   },
   {
     path: constant.HOME_PATH,
-    element: <Home />
+    element: <Home />,
+    meta: {
+      menuHidden: true
+    }
   },
   {
     path: constant.PLACES_PATH,
@@ -80,7 +83,6 @@ const Routes = [
   {
     path: constant.SERVICES_PATH,
     element: <Services />,
-
   },
   {
     path: constant.CATEGORY_PATH,

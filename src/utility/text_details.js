@@ -22,14 +22,6 @@ export const categoriesSingle = [
   { value: 'Festive', label: 'Festive' }
 ]
 
-export const ratingRanges = [
-  { value: { min:4.0, max:5.0 }, label: '5 Star' },
-  { value: { min:3.0, max:4.0 }, label: '4 Star' },
-  { value: { min:2.0, max:3.0 }, label: '3 Star' },
-  { value: { min:1.0, max:2.0 }, label: '2 Star' },
-  { value: { min:0.0, max:1.0 }, label: '1 Star' }
-]
-
 
 export const categories = [
   {

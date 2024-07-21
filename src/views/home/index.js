@@ -36,15 +36,6 @@ const Home = () => {
     maxscore: ""
   })
 
-/*
-  const ratingRanges = [
-    { value: { minscore: 4.0, maxscore: 5.0 }, label: "5 Star" },
-    { value: { minscore: 3.0, maxscore: 4.0 }, label: "4 Star" },
-    { value: { minscore: 2.0, maxscore: 3.0 }, label: "3 Star" },
-    { value: { minscore: 1.0, maxscore: 2.0 }, label: "2 Star" },
-    { value: { minscore: 0.0, maxscore: 1.0 }, label: "1 Star" }
-  ]
-*/
 
   const categoriesSingle = [
     { value: "Adventure", label: "Adventure" },
@@ -62,13 +53,7 @@ const Home = () => {
       tag: selectedTagType.value
     }))
   }
-/*  const handleAccountTypeChange = (selectedAccType) => {
-    setForm((prev) => ({
-      ...prev,
-      minscore: selectedAccType.value.minscore,
-      maxscore: selectedAccType.value.maxscore
-    }))
-  }*/
+
   console.log("form print =====================> ", form)
 
   const createPlaceForSearch = form => {
@@ -123,20 +108,7 @@ const Home = () => {
                     onChange={handleCategoryChange}
                   />
                 </Col>
-       {/*         <Col sm="12" className="mb-2">
-                  <Label className="form-label" for="input-name2">
-                    Select Ratings
-                  </Label>
-                  <Select
-                    id={`ratingType`}
-                    className="react-select"
-                    classNamePrefix="select"
-                    value={ratingRanges.find(item => item.value.minscore === form.minscore && item.value.maxscore === form.maxscore)}
-                    isClearable={false}
-                    options={ratingRanges}
-                    onChange={handleAccountTypeChange}
-                  />
-                </Col>*/}
+
                 <Col className="d-grid" sm="12">
                   <Button
                     className="btn_sch"
@@ -190,7 +162,7 @@ const Home = () => {
 
       {/* MAIN CATEGORY PAGE  */}
       <div className={" main_category"}>
-        <h1 className={"p-4 text-center main_sub_header"}>Explore Our Services and Facilities</h1>
+        <h1 className={"p-4 text-center main_sub_header"}>Explore Our main Facilities</h1>
         <SwiperMultiSlides isRtl={isRtl} />
       </div>
 

@@ -1,9 +1,9 @@
 // Images Imports
 
-import banner1 from "../assets/images/home/category/water_sport.jpg"
-import banner2 from "../assets/images/home/category/nature.jpg"
-import banner3 from "../assets/images/home/category/camping.jpg"
-import banner4 from "../assets/images/home/category/wild_life.jpg"
+import banner1 from "../assets/images/home/category/parking_facilities.jpg"
+import banner2 from "../assets/images/home/category/restrooms.jpg"
+import banner3 from "../assets/images/home/category/dining_area.jpeg"
+import banner4 from "../assets/images/home/category/wifi_internet.jpg"
 
 export const BlogData = {
   // sidebar

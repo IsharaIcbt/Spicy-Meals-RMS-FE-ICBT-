@@ -9,6 +9,7 @@ import "@styles/react/libs/swiper/swiper.scss"
 import FooterPage from "@src/views/home/footer/footer"
 import Select from "react-select"
 
+
 import { useNavigate } from "react-router-dom"
 import { PLACES_PATH_FILTER } from "@src/router/routes/route-constant"
 import { validatePlaceSearchDetails } from "@src/utility/validation"
@@ -125,7 +126,7 @@ const Home = () => {
       </div>
 
       {/* INTRODUCTION PAGE  */}
-      <div className={"container-fluid bg-white"} style={{ height: "100vh" }}>
+      <div className={"container-fluid bg-white"} style={{ height: "90vh" }}>
         <Row className={" pt-5 pb-2 introduction_page"}>
           <Col md={5} sm={12} lg={5} className={"m-0 p-0"}>
 
@@ -165,13 +166,13 @@ const Home = () => {
         </Row>
       </div>
 
-      {/* MAIN CATEGORY PAGE  */}
+      {/* MAIN Facilities PAGE  */}
       <div className={" main_category"}>
         <h1 className={"p-4 text-center main_sub_header"}>Explore Our main Facilities</h1>
         <SwiperMultiSlides isRtl={isRtl} />
       </div>
 
-      {/* TRAVEL THINGS PAGE  */}
+      {/* Special Offers PAGE  */}
       <div className={"container-fluid about_sriLanka bg-white "}>
         <Row>
           <h1 className={"pt-4 pb-4 text-center main_sub_header"}>What is Special Offers ?</h1>

@@ -22,6 +22,13 @@ import parking_facilities from "./home/category/parking_facilities.jpg"
 import wifi_internet from "./home/category/wifi_internet.jpg"
 import entertainment from "./home/category/entertainment.jpg"
 
+import restaurant_img1 from "./home/category/restrurent_img1.jpg"
+import restaurant_img2 from "./home/category/restrurent_img2.jpg"
+import restaurant_img3 from "./home/category/restrurent_img3.jpg"
+import restaurant_img4 from "./home/category/restrurent_img4.jpg"
+import coffee_shop from "./home/category/coffe_shop.jpg"
+import food_plate from "./home/category/food_plates.jpg"
+
 import emptyImg from "./home/empty.jpg"
 
 
@@ -37,7 +44,12 @@ export const Assets = {
   logo_about,
   services,
   login_cover,
-
+  restaurant_img1,
+  restaurant_img2,
+  restaurant_img3,
+  restaurant_img4,
+  coffee_shop,
+  food_plate,
   dining_area,
   delivery_takeout,
   open_kitchen,

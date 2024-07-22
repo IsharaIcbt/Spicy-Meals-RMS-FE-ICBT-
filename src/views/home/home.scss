@@ -37,7 +37,7 @@
   }
 
   .introduction_page {
-    height: 85vh;
+    height: 80vh!important;
     h2 {
       font-size: 90px;
       font-weight: 700;
@@ -53,7 +53,7 @@
     .paragraph-wrap {
       padding: 12px;
       color: #000000;
-      font-size: 16px;
+      font-size: 15px;
       word-wrap: break-word;
       overflow-wrap: break-word;
       hyphens: auto;

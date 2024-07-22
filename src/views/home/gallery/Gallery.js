@@ -1,27 +1,33 @@
-import React from 'react';
+import React from "react";
 import { Assets } from "@src/assets/images"; // Assuming you save the CSS in Gallery.css
-import './Gallery.scss';
-
-// Sample images (replace these with your actual image paths)
-const images = [
-  { src: Assets.dining_area, alt: 'Image 1', className: 'item1' },
-  { src: Assets.delivery_takeout, alt: 'Image 2', className: 'item2' },
-  { src: Assets.wifi_internet, alt: 'Image 3', className: 'item3' },
-  { src: Assets.open_kitchen, alt: 'Image 4', className: 'item4' },
-  { src: Assets.restrooms, alt: 'Image 5', className: 'item5' },
-  { src: Assets.bar_area, alt: 'Image 6', className: 'item6' },
-];
+import "./Gallery.css";
 
 const Gallery = () => {
   return (
-    <div className="gallery">
-      {images.map((image, index) => (
-        <div key={index} className="gallery-card">
-          <img src={image.src} alt={image.alt} />
-        </div>
-      ))}
-    </div>
-  );
+    <div className="row">
+      <div className="column">
+        <img src={Assets.restaurant_img1} />
+        <img src={Assets.delivery_takeout} />
+        <img src={Assets.coffee_shop} />
+      </div>
+      <div className="column">
+      <img src={Assets.dining_area} />
+        <img src={Assets.food_plate} />
+        <img src={Assets.restaurant_img2} />
+
+      </div>
+      <div className="column">
+      <img src={Assets.login_cover} />
+        <img src={Assets.restaurant_img3} />
+        <img src={Assets.bar_area} />
+      </div>
+      <div className="column">
+      <img src={Assets.restrooms}  />
+        <img src={Assets.restaurant_img4}  />
+        <img src={Assets.parking_facilities}  />
+
+      </div>
+    </div>);
 };
 
 export default Gallery;

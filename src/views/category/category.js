@@ -40,6 +40,10 @@ const Category = () => {
           </div>
 
           <Row className={"container-fluid"}>
+            <h2 className={"m-1 p-4  description"}>{selectedCategory?.shortDescription}</h2>
+          </Row>
+
+          <Row className={"container-fluid"}>
             <div className={"m-1 p-4  description"}>{selectedCategory?.description}</div>
           </Row>
 

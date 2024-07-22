@@ -155,7 +155,7 @@ const HorizontalLayout = (props) => {
       </Navbar>
       {!isHidden ? (
         <div className="horizontal-menu-wrapper">
-          <Navbar
+{/*          <Navbar
             tag="div"
             expand="sm"
             light={skin !== "dark"}
@@ -175,7 +175,7 @@ const HorizontalLayout = (props) => {
             ) : (
               <MenuComponent menuData={menuData} />
             )}
-          </Navbar>
+          </Navbar>*/}
         </div>
       ) : null}
 
@@ -202,7 +202,7 @@ const HorizontalLayout = (props) => {
           setContentWidth={setContentWidth}
         />
       ) : null}
-      <footer
+{/*      <footer
         className={classnames(
           `footer footer-light ${footerClasses[footerType] || "footer-static"}`,
           {
@@ -218,7 +218,7 @@ const HorizontalLayout = (props) => {
             footerClasses={footerClasses}
           />
         )}
-      </footer>
+      </footer>*/}
 
       {themeConfig.layout.scrollTop === true ? (
         <div className="scroll-to-top">

@@ -2,7 +2,6 @@
 import { Link, useNavigate } from "react-router-dom"
 
 // ** Icons Imports
-
 // ** Custom Components
 import InputPasswordToggle from "@components/input-password-toggle"
 
@@ -15,7 +14,7 @@ import "@styles/react/pages/page-authentication.scss"
 import { Assets } from "@src/assets/images"
 import { useState } from "react"
 import { HOME_PATH } from "@src/router/routes/route-constant"
-import { IS_LOGIN, USER_LOGIN_DETAILS } from "@src/router/RouteConstant";
+import { IS_LOGIN, USER_LOGIN_DETAILS } from "@src/router/RouteConstant"
 import { validateLoginDetails } from "@src/utility/validation"
 import SpinnerComponent from "@components/spinner/Fallback-spinner"
 import { loginExistingClient } from "@src/services/user"
@@ -26,37 +25,32 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    username: "",
-    password: ""
+    username: "", password: ""
   })
 
   const createLoginUser = form => {
     return {
-      username: form.username ?? null,
-      password: form.password ?? null
+      username: form.username ?? null, password: form.password ?? null
     }
   }
 
   const onTextChange = async (event) => {
     await setForm(prev => ({
-        ...prev,
-        [event.target.name]: event.target.value
-      })
-    )
+      ...prev, [event.target.name]: event.target.value
+    }))
   }
+
 
   const apiHandler = () => {
     if (validateLoginDetails(form)) {
       setLoading(true)
       loginExistingClient(createLoginUser(form))
         .then(response => {
-          console.log('------------------->', response)
+          console.log("------------------->", response)
           if (response.data) {
-            console.log("**********************>>>>>",response.data)
+            console.log("**********************>>>>>", response.data)
             const userData = {
-              user_id:response.data.id,
-              username:response.data.username,
-              email:response.data.email
+              user_id: response.data.id, username: response.data.username, email: response.data.email
             }
             localStorage.setItem(IS_LOGIN, "USER")
             localStorage.setItem(USER_LOGIN_DETAILS, JSON.stringify(userData))
@@ -76,12 +70,8 @@ const Login = () => {
     }
   }
 
-  return (
-    <>
-      {loading === true ? (
-        <SpinnerComponent />
-      ) : (
-        <div className="auth-wrapper auth-cover">
+  return (<>
+      {loading === true ? (<SpinnerComponent />) : (<div className="auth-wrapper auth-cover">
           <Row className="auth-inner m-0">
             <Col className="d-none d-lg-flex align-items-center m-0 p-0" lg="8" sm="12">
               <div className="w-100 d-lg-flex align-items-center justify-content-center">
@@ -130,7 +120,7 @@ const Login = () => {
                         Password
                       </Label>
                       <Link to="/forgot-password">
-                        <small className={'text-warning fw-bold'}>Forgot Password?</small>
+                        <small className={"text-warning fw-bold"}>Forgot Password?</small>
                       </Link>
                     </div>
                     <InputPasswordToggle
@@ -159,17 +149,15 @@ const Login = () => {
                 <p className="text-center mt-2">
                   <span className="me-25">New on our platform?</span>
                   <Link to="/register">
-                    <span  className={'text-warning fw-bold'}>Create an account</span>
+                    <span className={"text-warning fw-bold"}>Create an account</span>
                   </Link>
                 </p>
 
               </Col>
             </Col>
           </Row>
-        </div>
-      )}
-    </>
-  )
+        </div>)}
+    </>)
 }
 
 export default Login

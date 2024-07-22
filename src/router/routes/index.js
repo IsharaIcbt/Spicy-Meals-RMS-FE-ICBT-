@@ -20,7 +20,7 @@ const getLayout = {
 }
 
 import * as constant from './route-constant'
-import { PLACES_PATH_FILTER } from "./route-constant";
+
 
 // ** Default Route
 const DefaultRoute = "/home"
@@ -47,14 +47,12 @@ const Routes = [
   },
   {
     path: constant.HOME_PATH,
-    element: <Home />,
-    meta: {
-      menuHidden: true
-    }
+    element: <Home />
   },
   {
     path: constant.PLACES_PATH,
     element: <Places />
+
   },
   {
     path: constant.PLACES_PATH_FILTER,
@@ -78,11 +76,12 @@ const Routes = [
   },
   {
     path: constant.CATEGORIES_PATH,
-    element: <Categories />
+    element: <Categories />,
+
   },
   {
     path: constant.SERVICES_PATH,
-    element: <Services />,
+    element: <Services />
   },
   {
     path: constant.CATEGORY_PATH,

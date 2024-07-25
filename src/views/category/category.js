@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { fullDetailsOfSelectCategory } from "@src/utility/text_details"
+import { fullDetailsOfSelectMenuCategory } from "@src/utility/text_details";
 import SpinnerComponent from "@components/spinner/Fallback-spinner"
 import "./category.scss"
 import { Row } from "reactstrap"
@@ -13,7 +13,7 @@ const Category = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const category = fullDetailsOfSelectCategory.find((category) => category.id === categoryTitle)
+    const category = fullDetailsOfSelectMenuCategory.find((category) => category.id === categoryTitle)
     setSelectedCategory(category)
     setIsLoading(false)
     window.scrollTo(0, 0)
@@ -37,20 +37,11 @@ const Category = () => {
 
           <div className={"mb-3 mt-2 main_title"}>
             <h1>{`${selectedCategory?.title}`}</h1>
+            <div className={"text-center description fw-bold fs-3"}>{selectedCategory?.description}</div>
           </div>
 
           <Row className={"container-fluid"}>
-            <h2 className={"m-1 p-4  description"}>{selectedCategory?.shortDescription}</h2>
-          </Row>
 
-          <Row className={"container-fluid"}>
-            <div className={"m-1 p-4  description"}>{selectedCategory?.description}</div>
-          </Row>
-
-          <Row className={"second_sec mb-5"}>
-            <h2 className={"text-center subHeader"}><br />
-              Popular Places for {selectedCategory.title} !</h2>
-            <div className={"p-2 text-center"} dangerouslySetInnerHTML={{ __html: selectedCategory?.map_link }} />
           </Row>
 
           <FooterPage />

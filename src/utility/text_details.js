@@ -124,3 +124,73 @@ export const fullDetailsOfSelectCategory = [
       ' evening where great food meets great entertainment, creating memories that last long after the meal is over.'
   }
 ];
+
+export const fullDetailsOfSelectMenuCategory = [
+  {
+    id: 'STARTERS_&_SOUP',
+    title: 'Starters & Soup',
+    image: Assets.STARTERS_SOUP,
+    description: 'Kickstart your meal with our delicious starters and warming soups, designed to whet your appetite.'
+  },
+  {
+    id: 'SALAD',
+    title: 'Salads',
+    image: Assets.SALAD,
+    description: 'Fresh and healthy salads, crafted with the finest ingredients to provide a burst of flavor and nutrition.'
+  },
+  {
+    id: 'CHICKEN',
+    title: 'Chicken Choices',
+    image: Assets.CHICKEN,
+    description: 'Savor our variety of chicken dishes, cooked to perfection with unique and delectable flavors.'
+  },
+  {
+    id: 'BIRIYANI',
+    title: 'Biryani Varieties',
+    image: Assets.BIRIYANI,
+    description: 'Experience the rich and aromatic flavors of our diverse biryani options, a true delight for your palate.'
+  },
+  {
+    id: 'BBQ',
+    title: 'Bbq Varieties',
+    image: Assets.BBQ,
+    description: 'Indulge in our mouth-watering BBQ selections, grilled to perfection with a tantalizing smoky flavor.'
+  },
+  {
+    id: 'INTERNATIONAL',
+    title: 'International Meals',
+    image: Assets.INTERNATIONAL,
+    description: 'Travel the world with our international meals, featuring a variety of global cuisines to satisfy your taste buds.'
+  },
+  {
+    id: 'SANDWICH',
+    title: 'Sandwiches',
+    image: Assets.SANDWICH,
+    description: 'Enjoy our hearty and delicious sandwiches, made with fresh ingredients and creative combinations.'
+  },
+  {
+    id: 'DESSERT',
+    title: 'Desserts',
+    image: Assets.DESSERT,
+    description: 'Treat yourself to our delectable desserts, the perfect sweet ending to your meal.'
+  },
+  {
+    id: 'EXTRA',
+    title: 'Extra Meals',
+    image: Assets.EXTRA,
+    description: 'Explore our additional meal options, offering even more variety to satisfy your cravings.'
+  },
+  {
+    id: 'FRESH_JUICE',
+    title: 'Fresh Juice & Milk Shakes',
+    image: Assets.FRESH_JUICE,
+    description: 'Refresh yourself with our freshly made juices and creamy milkshakes, perfect for any time of the day.'
+  },
+  {
+    id: 'TEA_&_COFFEE',
+    title: 'Tea & Coffee',
+    image: Assets.TEA_COFFEE,
+    description: 'Relax with our selection of fine teas and rich coffees, ideal for a cozy break or an after-meal treat.'
+  }
+]
+

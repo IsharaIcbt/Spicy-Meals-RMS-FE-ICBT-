@@ -223,7 +223,7 @@ const HorizontalLayout = (props) => {
       {themeConfig.layout.scrollTop === true ? (
         <div className="scroll-to-top">
           <ScrollToTop showOffset={300} className="scroll-top d-block">
-            <Button className="btn-icon" color="primary">
+            <Button className="btn-icon" color="warning">
               <ArrowUp size={14} />
             </Button>
           </ScrollToTop>

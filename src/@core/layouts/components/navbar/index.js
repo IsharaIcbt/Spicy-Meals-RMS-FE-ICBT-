@@ -7,7 +7,6 @@ import {
   ADD_NEW_PLACE_PATH,
   CATEGORIES_PATH,
   HOME_PATH,
-  PLACES_PATH,
   SERVICES_PATH
 } from "@src/router/routes/route-constant";
 import { Link } from "react-router-dom"
@@ -89,16 +88,6 @@ const ThemeNavbar = (props) => {
               </div>
             </Link>
 
-            <Link
-              to={PLACES_PATH}
-              className={`top-wrapper ${windowPath === PLACES_PATH ? "top-wrapper-active" : ""}`}
-              onClick={() => setWindowPathHandler(PLACES_PATH)}
-            >
-              <div className={"nav_itm"}>
-                <MapPin />
-                <p>Places</p>
-              </div>
-            </Link>
 
             <Link
               to={CATEGORIES_PATH}
@@ -107,7 +96,7 @@ const ThemeNavbar = (props) => {
             >
               <div className={"nav_itm"}>
                 <Grid />
-                <p>Category</p>
+                <p>Our-Menus</p>
               </div>
             </Link>
 
@@ -127,7 +116,7 @@ const ThemeNavbar = (props) => {
               >
                 <div className={"nav_itm"}>
                   <PlusCircle />
-                  <p>Add New Place</p>
+                  <p>Make Reservation</p>
                 </div>
               </Link>)}
           </div>

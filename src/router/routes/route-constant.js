@@ -1,7 +1,6 @@
 export const ROUTE_PATH = ''
 
 export const HOME_PATH = `${ROUTE_PATH}/home`
-export const PLACES_PATH = `${ROUTE_PATH}/places`
 export const PLACES_PATH_FILTER = `${ROUTE_PATH}/search-places`
 export const CATEGORIES_PATH = `${ROUTE_PATH}/categories`
 export const SERVICES_PATH = `${ROUTE_PATH}/services`

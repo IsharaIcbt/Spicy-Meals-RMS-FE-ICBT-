@@ -17,7 +17,7 @@ const Gallery = () => {
 
       </div>
       <div className="column">
-      <img src={Assets.login_cover} />
+      <img src={Assets.open_kitchen} />
         <img src={Assets.restaurant_img3} />
         <img src={Assets.bar_area} />
       </div>

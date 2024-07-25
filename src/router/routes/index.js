@@ -25,10 +25,6 @@ import * as constant from './route-constant'
 // ** Default Route
 const DefaultRoute = "/home"
 const Home = lazy(() => import("../../views/home"))
-const Places = lazy(() => import("../../views/places/list/index"))
-const PlacesWithFilter = lazy(() => import("../../views/places/list/filterPlace"))
-const PlaceDetails = lazy(() => import('../../views/places/details'))
-const PlaceEdit = lazy(() => import('../../views/places/edit'))
 const Categories = lazy(() => import("../../views/categories/categories"))
 const Category = lazy(() => import("../../views/category/category"))
 const Services = lazy(() => import("../../views/services/Services"))
@@ -50,25 +46,8 @@ const Routes = [
     element: <Home />
   },
   {
-    path: constant.PLACES_PATH,
-    element: <Places />
-
-  },
-  {
-    path: constant.PLACES_PATH_FILTER,
-    element: <PlacesWithFilter />
-  },
-  {
-    path: '/pages/blog/detail/:id',
-    element: <PlaceDetails />
-  },
-  {
     path: '/pages/blog/detail',
     element: <Navigate to='/pages/blog/detail/1' />
-  },
-  {
-    path: '/pages/blog/edit/:id',
-    element: <PlaceEdit />
   },
   {
     path: '/pages/blog/edit',
@@ -76,8 +55,7 @@ const Routes = [
   },
   {
     path: constant.CATEGORIES_PATH,
-    element: <Categories />,
-
+    element: <Categories />
   },
   {
     path: constant.SERVICES_PATH,

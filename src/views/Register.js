@@ -86,7 +86,7 @@ const Register = () => {
             <Col className="d-none d-lg-flex align-items-center m-0 p-0" lg="8" sm="12">
               <div className="w-100 d-lg-flex align-items-center justify-content-center">
                 <img className="img-fluid" style={{ width: "100%", height: "100vh", objectFit: "cover" }}
-                     src={Assets.login_cover}
+                     src={Assets.open_kitchen}
                      alt="Login Cover"
                 />
               </div>

@@ -16,7 +16,6 @@ import { validatePlaceDetails } from "@src/utility/validation"
 import { USER_LOGIN_DETAILS } from "@src/router/RouteConstant"
 import toast from "react-hot-toast"
 import { addNewPlace } from "@src/services/place"
-import { PLACES_PATH } from "@src/router/routes/route-constant"
 import SpinnerComponent from "@components/spinner/Fallback-spinner"
 import { useNavigate } from "react-router-dom"
 
@@ -105,7 +104,7 @@ const AddNewPlace = () => {
           if (response.data) {
             toast.success(response.message)
             clearFields()
-            navigate(PLACES_PATH)
+            //navigate(PLACES_PATH)
           } else {
             toast.error(response.message)
           }

@@ -35,13 +35,15 @@ export const BlogData = {
       }
     ],
     categories: [
-      { category: "Adventure", icon: "AlertOctagon" },
-      { category: "WildLife", icon: "Gitlab" },
-      { category: "WaterSport", icon: "Wind" },
-      { category: "Nature", icon: "CloudRain" },
-      { category: "Camping", icon: "Moon" },
-      { category: "Ancient", icon: "Command" },
-      { category: "Festive", icon: "Star" }
+      { category: "Starters", icon: "AlertOctagon" },
+      { category: "Soup", icon: "Gitlab" },
+      { category: "Chicken", icon: "Wind" },
+      { category: "International", icon: "CloudRain" },
+      { category: "Extra", icon: "Moon" },
+      { category: "Biryani", icon: "Moon" },
+      { category: "Sandwich", icon: "Command" },
+      { category: "Desserts", icon: "Star" },
+      { category: "Fresh Juice", icon: "Star" }
     ]
   }
 

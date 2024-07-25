@@ -1,62 +1,149 @@
 import React from "react"
 import { Assets } from "@src/assets/images"
 import FooterPage from "@src/views/home/footer/footer"
-import { Col, Row } from "reactstrap";
-
+import { CardText, Col, Row } from "reactstrap";
+import { Award, Clock, Feather, Shield, UserCheck, Users } from "react-feather";
+import './service.scss'
 function Services() {
   const coverImageStyles = {
-    background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${Assets.services})`,
+    background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url(${Assets.services})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    height: "50vh"
+    height: "55vh"
   }
 
   return (
     <div className={"category_page"}>
 
-      <div className="container-fluid main_sec" style={coverImageStyles}></div>
-
-      {/* INTRODUCTION PAGE  */}
-      <div className={"container-fluid bg-white"} style={{ height: "100vh" }}>
-        <Row className={" pt-5 pb-2 introduction_page"}>
-          <Col md={5} sm={12} lg={5} className={"m-0 p-0"}>
-
-            <h2 className={"text-start"}><span className="script">Welcome To Spicy Meals!</span><br />
-              Who are we?</h2>
-            <img src={Assets.logo_about} alt={"travel logo"} style={{ width: "24vw" }} />
-          </Col>
-          <Col md={7} sm={12} lg={7} className={"mt-1"}>
-            <div className={"paragraph-wrap  "}>
-
-              <h3 className={""} style={{ color: "#DD673F", fontWeight: 700 }}>Discover the Spicy Foods Experience, A
-                Culinary Journey</h3><br />
-
-              Welcome to Spicy Foods – Where Every Meal is a Celebration! At Spicy Meals, we go beyond merely serving
-              food we craft experiences that linger in your memory. Our commitment is to be more than just a restaurant
-              – we
-              want to be a destination where joy, warmth, and deliciousness come together.
-              Founded with the vision of becoming the largest restaurant chain in Sri Lanka, Spicy Meals is the
-              brainchild of a team dedicated to redefining the dining experience.<br /><br />
-
-              <h3 className={""} style={{ color: "#DD673F", fontWeight: 700 }}>Our Culinary Offering: A Symphony of
-                Flavors</h3><br />
-              Dive into a world of culinary excellence with our diverse menu featuring Western,
-              Chinese, Indian, Italian, Sri Lankan, and Street Food delights. Each dish is a testament to our
-              commitment to serving fresh, delicious, and mouthwatering varieties of quality foods, prepared
-              with meticulous attention to high industry standards and hygiene.<br /><br />
-
-              <h3 className={""} style={{ color: "#DD673F", fontWeight: 700 }}>Your Destination for Joyful Memories</h3>
-              <br />
-              Beyond the tantalizing tastes and aromas, Spicy Meals is a place where memories are made.
-              Our team is not just here to serve; we're here to create moments of joy that extend beyond
-              the dining table. Every visit to Spicy Meals is an opportunity to escape the ordinary
-              and immerse yourself in a culinary experience like no other.
-
-            </div>
-          </Col>
+      <div className="container-fluid main_sec" style={coverImageStyles}>
+        <Row className={"pt-5"}>
+          <h1 className={"text-center text-white fw-bold"}
+              style={{ fontSize: "5rem", fontWeight: "600" }}>
+            Our Services
+          </h1>
+          <h2 className={"text-center text-white"}> Let's Enjoy Favorite Restaurant Experience. </h2>
         </Row>
       </div>
+
+      {/* INTRODUCTION PAGE  */}
+      <div className={"container-fluid bg-white pb-3"}>
+        <h2 className={"text-center service_sub_header mt-1 p-4"}> Our Values </h2>
+        <div className='item-features'>
+          <Row className='text-center'>
+            <Col className='mb-4 mb-md-0' md='3' xs='12'>
+              <div className='w-75 mx-auto'>
+                <Award size={40} color={"#FD7E14"}/>
+                <h3 className='mt-2 mb-1 text-warning'>Integrity</h3>
+                <CardText> Upholding honesty and transparency in everything we do. We believe
+                  in building trust with our customers and team by being consistent and
+                  straightforward in our actions and communications.</CardText>
+              </div>
+            </Col>
+            <Col className='mb-4 mb-md-0' md='3' xs='12'>
+              <div className='w-75 mx-auto'>
+                <Feather size={40} color={"#FD7E14"}/>
+                <h3 className='mt-2 mb-1 text-warning'>Compassion</h3>
+                <CardText>Showing empathy and understanding towards our customers
+                  and team. We strive to create a supportive and caring environment,
+                  ensuring everyone feels valued and respected.</CardText>
+              </div>
+            </Col>
+            <Col className='mb-4 mb-md-0' md='3' xs='12'>
+              <div className='w-75 mx-auto'>
+                <Users size={40} color={"#FD7E14"}/>
+                <h3 className='mt-2 mb-1 text-warning'>People Power</h3>
+                <CardText>Recognizing the strength of our team.
+                  We believe in empowering our employees and fostering a collaborative
+                  culture where everyone's contributions are appreciated.</CardText>
+              </div>
+            </Col>
+            <Col className='mb-4 mb-md-0' md='3' xs='12'>
+              <div className='w-75 mx-auto'>
+                <UserCheck size={40} color={"#FD7E14"} />
+                <h3 className='mt-2 mb-1 text-warning'>Customer Service</h3>
+                <CardText>Committed to providing best service and ensuring customer satisfaction.
+                  We are dedicated to meeting our customers' needs and their expectations
+                  through best service.</CardText>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </div>
+
+
+      {/* INTRODUCTION PAGE  */}
+      <div className={"container-fluid bg-white mb-5 pb-3"}>
+        <h2 className={"text-center service_sub_header mt-3 p-4"}> Our Services </h2>
+        <div className='item-features'>
+          <Row className='text-center'>
+            <Col className='mb-4 mb-md-0' md='3' xs='12'>
+              <div className='w-75 mx-auto'>
+                <img src={Assets.family_dining} alt={'family_dining'} width={80}/>
+                <h3 className='mt-2 mb-1 text-warning'>Family Dining</h3>
+                <CardText>Create family moments in our welcoming atmosphere.</CardText>
+              </div>
+            </Col>
+            <Col className='mb-4 mb-md-0' md='3' xs='12'>
+              <div className="w-75 mx-auto">
+                <img src={Assets.street_dining} alt={"family_dining"} width={80} />
+                <h3 className="mt-2 mb-1 text-warning">Street Dining</h3>
+                <CardText>Experience the vibrant street food culture in a cozy setting.</CardText>
+              </div>
+            </Col>
+            <Col className="mb-4 mb-md-0" md='3' xs='12'>
+              <div className="w-75 mx-auto">
+                <img src={Assets.prepare_own_dish} alt={"family_dining"} width={80} />
+                <h3 className="mt-2 mb-1 text-warning">Prepare Your Own Dish</h3>
+                <CardText>Customization at its best – unleash your inner chef!</CardText>
+              </div>
+            </Col>
+            <Col className="mb-4 mb-md-0" md='3' xs='12'>
+              <div className="w-75 mx-auto">
+                <img src={Assets.parties_celebration} alt={"family_dining"} width={80} />
+                <h3 className="mt-2 mb-1 text-warning">Parties and Celebrations</h3>
+                <CardText>Host your special events and celebrations with us.</CardText>
+              </div>
+            </Col>
+          </Row>
+        </div>
+
+        <div className='item-features mt-4'>
+          <Row className='text-center'>
+            <Col className='mb-4 mb-md-0' md='3' xs='12'>
+              <div className="w-75 mx-auto">
+                <img src={Assets.ample_parking} alt={"family_dining"} width={80} />
+                <h3 className="mt-2 mb-1 text-warning">Ample Parking</h3>
+                <CardText>Hassle-free parking facilities for our valued customers.</CardText>
+              </div>
+            </Col>
+            <Col className="mb-4 mb-md-0" md='3' xs='12'>
+              <div className="w-75 mx-auto">
+                <img src={Assets.online_ordering} alt={"family_dining"} width={80} />
+                <h3 className="mt-2 mb-1 text-warning">Online Ordering and Pick Up</h3>
+                <CardText>Save time by ordering online and picking up at your convenience.</CardText>
+              </div>
+            </Col>
+            <Col className="mb-4 mb-md-0" md='3' xs='12'>
+              <div className="w-75 mx-auto">
+                <img src={Assets.table_reservation} alt={"family_dining"} width={80} />
+                <h3 className="mt-2 mb-1 text-warning">Online Table Reservation</h3>
+                <CardText>Ensure a seamless dining experience by reserving your table online.</CardText>
+              </div>
+            </Col>
+            <Col className="mb-4 mb-md-0" md='3' xs='12'>
+              <div className="w-75 mx-auto">
+                <img src={Assets.byob} alt={"family_dining"} width={80} />
+                <h3 className="mt-2 mb-1 text-warning">BYOB (Bring Your Own Bottle)</h3>
+                <CardText>Bring your favorite beverage and enjoy it with our delectable dishes.</CardText>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </div>
+
+
+
 
       <FooterPage />
 

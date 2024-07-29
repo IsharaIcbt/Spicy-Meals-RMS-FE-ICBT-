@@ -21,7 +21,7 @@ const params = {
 const SwiperMultiSlides = () => {
   const navigate = useNavigate()
   const handleButtonClick = (id) => {
-    navigate(`${CATEGORY_PATH}/${id.toLowerCase()}`)
+    navigate(`${CATEGORY_PATH}/${id}`)
   }
   const cardImgStyles = {
     width: "100%",

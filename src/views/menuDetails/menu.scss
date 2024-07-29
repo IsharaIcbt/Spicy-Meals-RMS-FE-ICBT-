@@ -1,0 +1,42 @@
+
+.category_page{
+
+  .main_sec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main_title{
+    h1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgba(28, 28, 28, 0.37);
+      font-family: Calibri, serif;
+      font-size: 110px;
+      font-weight: 700;
+    }
+  }
+  .description{
+    line-height: 30px;
+    font-size: 16px;
+    color: #22292f;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  .second_sec{
+    background: rgba(228, 231, 231, 0.58);
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+
+    .subHeader{
+      color: rgba(28, 28, 28, 0.37);
+      font-family: Calibri, serif;
+      font-size: 80px;
+      font-weight: 700;
+    }
+  }
+
+}

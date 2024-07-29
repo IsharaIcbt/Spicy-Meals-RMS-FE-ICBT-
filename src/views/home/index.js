@@ -93,7 +93,7 @@ const Home = () => {
           <h2 className={"text-center text-white"}> Let's Enjoy Favorite Restaurant Experience. </h2>
         </Row>
         <Card className="custom-card">
-          <h2 className={"text-center form_head mt-1"}style={{fontWeight:800}}>Make Reservation</h2><hr/>
+          <h2 className={"text-center form_head mt-1"}style={{fontWeight:800}}>Make Reservation</h2><hr className={'me-2 ms-2'}/>
           <CardBody>
             <Form className="form" onSubmit={e => e.preventDefault()}>
               <Row>
@@ -174,15 +174,15 @@ const Home = () => {
       </div>
 
       {/* Special Offers PAGE  */}
-      <div className={"container-fluid about_sriLanka bg-white "}>
+      <div className={"container-fluid about_sriLanka bg-light-warning "}>
         <Row>
           <h1 className={"pt-4 pb-4 text-center main_sub_header"}>What is Special Offers ?</h1>
           <Col md={5} className={"ps-2 pe-2"}>
 
             <h3 style={{color: "#DD673F", fontWeight: 700 , fontSize:'26px'}}className={"text-start pb-2 pt-1"}>
-              <span className="script">Indulge in Our Latest Offers and Flavors!</span></h3><br />
+              <span className="script text-dark">Indulge in Our Latest Offers and Flavors!</span></h3><br />
 
-            <p style={{fontSize:'15px'}}>At Spicy Meals, we are dedicated to providing a dynamic and exciting dining experience with our
+            <p style={{fontSize:'15px'}} className={'text-dark'}>At Spicy Meals, we are dedicated to providing a dynamic and exciting dining experience with our
               ever-changing menu. To keep your dining experience fresh and full of surprises, we update our meal
               offerings weekly. Each week, our chefs curate a selection of new and seasonal dishes to ensure that
               there is always something new and delicious to try.

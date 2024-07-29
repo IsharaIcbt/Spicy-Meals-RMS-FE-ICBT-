@@ -6,6 +6,8 @@ export const isObjEmpty = (obj) => Object.keys(obj).length === 0
 // ** Returns K format from a number
 export const kFormatter = (num) => (num > 999 ? `${(num / 1000).toFixed(1)}k` : num)
 
+export const isUserLoggedIn = () => localStorage.getItem('userData')
+
 export const getUserData = () => JSON.parse(localStorage.getItem("userData"))
 
 /**

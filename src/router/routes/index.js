@@ -25,8 +25,15 @@ import * as constant from './route-constant'
 // ** Default Route
 const DefaultRoute = "/home"
 const Home = lazy(() => import("../../views/home"))
-const Categories = lazy(() => import("../../views/categories/categories"))
 const Category = lazy(() => import("../../views/category/category"))
+const Menus = lazy(() => import("../../views/menus/menus"))
+const MenuDetails = lazy(() => import("../../views/menuDetails/menuDetails"))
+const Meals = lazy(() => import("../../views/meals/meals"))
+
+const EcommerceShop = lazy(() => import('../../views/apps/ecommerce/shop'))
+const EcommerceDetail = lazy(() => import('../../views/apps/ecommerce/detail'))
+const EcommerceCheckout = lazy(() => import('../../views/apps/ecommerce/checkout'))
+
 const Services = lazy(() => import("../../views/services/Services"))
 
 const AddNewPlace = lazy(() => import("../../views/places/add_new_place"))
@@ -46,16 +53,45 @@ const Routes = [
     element: <Home />
   },
   {
-    path: '/pages/blog/detail',
-    element: <Navigate to='/pages/blog/detail/1' />
+    path: constant.MENUS_PATH,
+    element: <Menus />
   },
   {
-    path: '/pages/blog/edit',
-    element: <Navigate to='/pages/blog/edit/1' />
+    path: constant.MENU_DETAILS_PATH,
+    element: <MenuDetails />,
+    children: [{ path: ':menuId', element: <MenuDetails /> }]
+  },
+/*  {
+    path: constant.MEALS_PATH,
+    element: <Meals />
+  },*/
+  {
+    path: constant.SHOP_PATH,
+    element: <EcommerceShop />,
+    meta: {
+      className: 'ecommerce-application'
+    }
   },
   {
-    path: constant.CATEGORIES_PATH,
-    element: <Categories />
+    path: '/apps/ecommerce/product-detail',
+    element: <Navigate to='/apps/ecommerce/product-detail/apple-i-phone-11-64-gb-black-26' />,
+    meta: {
+      className: 'ecommerce-application'
+    }
+  },
+  {
+    path: '/apps/ecommerce/product-detail/:product',
+    element: <EcommerceDetail />,
+    meta: {
+      className: 'ecommerce-application'
+    }
+  },
+  {
+    path: '/apps/ecommerce/checkout',
+    element: <EcommerceCheckout />,
+    meta: {
+      className: 'ecommerce-application'
+    }
   },
   {
     path: constant.SERVICES_PATH,

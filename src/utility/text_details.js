@@ -23,12 +23,6 @@ export const categoriesSingle = [
 ]
 
 
-export const categories = [
-
-
-]
-
-
 export const fullDetailsOfSelectCategory = [
   {
     id: 'dining_area',

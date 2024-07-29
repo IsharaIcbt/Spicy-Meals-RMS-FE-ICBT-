@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { fullDetailsOfSelectMenuCategory } from "@src/utility/text_details";
+import { fullDetailsOfSelectCategory } from "@src/utility/text_details";
 import SpinnerComponent from "@components/spinner/Fallback-spinner"
 import "./category.scss"
 import { Row } from "reactstrap"
@@ -13,7 +13,7 @@ const Category = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const category = fullDetailsOfSelectMenuCategory.find((category) => category.id === categoryTitle)
+    const category = fullDetailsOfSelectCategory.find((category) => category.id === categoryTitle)
     setSelectedCategory(category)
     setIsLoading(false)
     window.scrollTo(0, 0)
@@ -37,7 +37,7 @@ const Category = () => {
 
           <div className={"mb-3 mt-2 main_title"}>
             <h1>{`${selectedCategory?.title}`}</h1>
-            <div className={"text-center description fw-bold fs-3"}>{selectedCategory?.description}</div>
+            <p className={"text-center description fw-bold fs-4"}>{selectedCategory?.description}</p>
           </div>
 
           <Row className={"container-fluid"}>

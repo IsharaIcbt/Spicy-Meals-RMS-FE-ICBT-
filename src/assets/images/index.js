@@ -47,6 +47,18 @@ import EXTRA from "./menu/EXTRA.jpg"
 import FRESH_JUICE from "./menu/FRESH_JUICE.jpg"
 import TEA_COFFEE from "./menu/TEA_&_COFFEE.jpg"
 
+import biriyani from "./meals/biriyani.png"
+import cofee from "./meals/cofee.png"
+import pork from "./meals/pork.png"
+import soup from "./meals/soup.png"
+import salad from "./meals/salad.png"
+import chicken from "./meals/chicken.png"
+import sandwich from "./meals/sandwich.png"
+import spaghetti from "./meals/spaghetti.png"
+import fruitesalad from "./meals/fruitesalad.png"
+import mongoliyan from "./meals/mongoliyan.png"
+import watermelon from "./meals/watermelon.png"
+
 
 import emptyImg from "./home/empty.jpg"
 
@@ -95,6 +107,16 @@ export const Assets = {
   DESSERT,
   EXTRA,
   FRESH_JUICE,
-  TEA_COFFEE
-
+  TEA_COFFEE,
+  biriyani,
+  cofee,
+  pork,
+  soup,
+  salad,
+  chicken,
+  sandwich,
+  spaghetti,
+  fruitesalad,
+  mongoliyan,
+  watermelon
 }

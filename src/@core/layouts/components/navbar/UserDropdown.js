@@ -1,91 +1,82 @@
 // ** React Imports
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 // ** Custom Components
-import Avatar from "@components/avatar"
+import Avatar from '@components/avatar'
+
+// ** Utils
+import { isUserLoggedIn } from '@utils'
+
+// ** Store & Actions
+import { useDispatch } from 'react-redux'
+
 
 // ** Third Party Components
-import { Mail, Power, User } from "react-feather"
+import { User, Mail, CheckSquare, MessageSquare, Settings, CreditCard, HelpCircle, Power } from 'react-feather'
 
 // ** Reactstrap Imports
-import { Button, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap"
+import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap'
 
 // ** Default Avatar Image
-import defaultAvatar from "@src/assets/images/portrait/small/avatar-s-11.jpg"
-import { IS_LOGIN, LOGIN_PATH, USER_LOGIN_DETAILS } from "@src/router/RouteConstant"
-import { useEffect, useState } from "react"
-import { getUserById } from "@src/services/user"
+import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-11.jpg'
+import { USER_OBJECT } from "@src/router/RouteConstant"
+import { removeLocalStorageValues } from "@src/utility/commonFun"
 
 const UserDropdown = () => {
-  const navigate = useNavigate()
-  const [userDetails, setUserDetails] = useState(null)
+  // ** Store Vars
+  const dispatch = useDispatch()
 
+  // ** State
+  const [userData, setUserData] = useState(null)
+
+  //** ComponentDidMount
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      const user = localStorage.getItem(USER_LOGIN_DETAILS)
-      if (user) {
-        const userObj = JSON.parse(user)
-        try {
-          const response = await getUserById(userObj.user_id)
-          if (response.data) {
-            setUserDetails(response.data)
-          }
-        } catch (error) {
-          console.error("Error fetching user details:", error)
-        }
-      }
+    if (isUserLoggedIn() !== null) {
+      setUserData(JSON.parse(localStorage.getItem("USER_OBJECT")))
     }
-    fetchUserDetails()
   }, [])
 
-  const handleLogOut = () => {
-    localStorage.removeItem(IS_LOGIN)
-    localStorage.removeItem(USER_LOGIN_DETAILS)
-    navigate(LOGIN_PATH)
-  }
+  //** Vars
+  const userAvatar = (userData && userData.img) || defaultAvatar
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
+  const handleLogout = () => {
+    removeLocalStorageValues()
   }
-
-  if (!userDetails) {
-    return null; // Render nothing if userDetails is null
-  }
-
   return (
-    <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
-      <DropdownToggle
-        href="/"
-        tag="a"
-        className="nav-link dropdown-user-link"
-        onClick={(e) => e.preventDefault()}
-      >
+    <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
+      <DropdownToggle href='/' tag='a' className='nav-link dropdown-user-link' onClick={e => e.preventDefault()}>
         <div className="user-nav d-sm-flex d-none">
-          <span
-            className="user-name fw-bold fs-5">{capitalizeFirstLetter(userDetails?.username)}</span>
-          <span className="user-status fs-6">{capitalizeFirstLetter(userDetails?.role?.toLowerCase() || "User")}</span>
+        <span className="user-name fw-bold ">
+          {userData && userData.name ? userData.name.split(" ")[0] : "John"}
+        </span>
+          <span className="user-status">{(userData && userData?.userRole) || "Admin"}</span>
         </div>
-        <Avatar
-          img={userDetails?.user_img || defaultAvatar}
-          imgHeight="45"
-          imgWidth="45"
-          status="online"
-        />
+        <Avatar img={userAvatar} imgHeight="40" imgWidth="40" status="online" />
       </DropdownToggle>
       <DropdownMenu end>
-        <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <User size={14} className="me-75" />
-          <span className="align-middle">Profile</span>
+        <DropdownItem tag={Link} to='/pages/profile'>
+          <User size={14} className='me-75' />
+          <span className='align-middle'>Profile</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <Mail size={14} className="me-75" />
-          <span className="align-middle">Inbox</span>
+        <DropdownItem tag={Link} to='/apps/email'>
+          <Mail size={14} className='me-75' />
+          <span className='align-middle'>Inbox</span>
+        </DropdownItem>
+        <DropdownItem tag={Link} to='/apps/todo'>
+          <CheckSquare size={14} className='me-75' />
+          <span className='align-middle'>Tasks</span>
+        </DropdownItem>
+        <DropdownItem tag={Link} to='/apps/chat'>
+          <MessageSquare size={14} className='me-75' />
+          <span className='align-middle'>Chats</span>
         </DropdownItem>
         <DropdownItem divider />
-        <Button color={"primary"} onClick={handleLogOut} className={"ms-1 btn-sm"}>
-          <Power size={14} className="me-75" />
-          <span className="align-middle">Logout</span>
-        </Button>
+
+        <DropdownItem tag={Link} to='/home'>
+          <Power size={14} className='me-75' />
+          <span className='align-middle' onClick={handleLogout}>Logout</span>
+        </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>
   )

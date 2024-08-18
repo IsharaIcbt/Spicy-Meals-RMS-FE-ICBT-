@@ -59,6 +59,8 @@ import fruitesalad from "./meals/fruitesalad.png"
 import mongoliyan from "./meals/mongoliyan.png"
 import watermelon from "./meals/watermelon.png"
 
+import avater from "./portrait/small/avatar-s-11.jpg"
+
 
 import emptyImg from "./home/empty.jpg"
 
@@ -118,5 +120,6 @@ export const Assets = {
   spaghetti,
   fruitesalad,
   mongoliyan,
-  watermelon
+  watermelon,
+  avater
 }

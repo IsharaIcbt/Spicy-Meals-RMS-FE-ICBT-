@@ -28,7 +28,7 @@ export const fullDetailsOfSelectCategory = [
     id: 'dining_area',
     title: 'Dining Area',
     image: Assets.dining_area,
-    shortDescription:'Experience our comfortable and elegantly designed dining area, where every meal is a delightful experience.' ,
+    shortDescription:'Experience our comfortable and elegantly designed dining area, where every meal is a delightful experience.',
     description: 'Experience the epitome of comfort and elegance in our meticulously designed dining area. With a spacious layout,' +
       ' ambient lighting, and sophisticated décor, our dining area sets the perfect stage for a memorable meal. Whether you are ' +
       'dining solo, with a partner, or in a large group, our seating arrangements cater to all needs. The serene environment, ' +
@@ -86,7 +86,7 @@ export const fullDetailsOfSelectCategory = [
     id: 'parking_facilities',
     title: 'Parking Facilities',
     image: Assets.parking_facilities,
-    shortDescription:'Ample parking facilities are available to ensure a hassle-free visit to our restaurant.' ,
+    shortDescription:'Ample parking facilities are available to ensure a hassle-free visit to our restaurant.',
     description: 'Convenience begins the moment you arrive, thanks to our ample parking facilities. ' +
       'We understand the importance of a hassle-free experience, which is why we provide spacious ' +
       'and secure parking options for our guests. Whether you are visiting for a quick meal or a ' +
@@ -110,14 +110,14 @@ export const fullDetailsOfSelectCategory = [
     id: 'entertainment',
     title: 'Entertainment',
     image: Assets.entertainment,
-    shortDescription: 'Enjoy live music and other entertainment options to enhance your dining experience.' ,
+    shortDescription: 'Enjoy live music and other entertainment options to enhance your dining experience.',
     description: 'Enhance your dining experience with our diverse entertainment options. From live music performances' +
       ' to themed nights, we offer a variety of entertainment to complement your visit. Our carefully curated events ' +
       'create a vibrant atmosphere, making every meal a celebration. Whether you prefer soothing background music ' +
       'or engaging live performances, our entertainment options cater to all preferences. Join us for an unforgettable' +
       ' evening where great food meets great entertainment, creating memories that last long after the meal is over.'
   }
-];
+]
 
 export const fullDetailsOfSelectMenuCategory = [
   {

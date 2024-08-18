@@ -12,6 +12,9 @@ import PublicRoute from "@components/routes/PublicRoute"
 
 // ** Utils
 import { isObjEmpty } from "@utils"
+import * as constant from "./route-constant"
+import { HOME_PATH } from "./route-constant"
+
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -19,27 +22,39 @@ const getLayout = {
   horizontal: <HorizontalLayout />
 }
 
-import * as constant from './route-constant'
-
-
 // ** Default Route
-const DefaultRoute = "/home"
+const DefaultRoute = HOME_PATH
 const Home = lazy(() => import("../../views/home"))
 const Category = lazy(() => import("../../views/category/category"))
 const Menus = lazy(() => import("../../views/menus/menus"))
 const MenuDetails = lazy(() => import("../../views/menuDetails/menuDetails"))
-const Meals = lazy(() => import("../../views/meals/meals"))
-
-const EcommerceShop = lazy(() => import('../../views/apps/ecommerce/shop'))
-const EcommerceDetail = lazy(() => import('../../views/apps/ecommerce/detail'))
-const EcommerceCheckout = lazy(() => import('../../views/apps/ecommerce/checkout'))
+const MealsShop = lazy(() => import('../../views/apps/ecommerce/shop'))
+const MealsDetail = lazy(() => import('../../views/apps/ecommerce/detail'))
+const MealsCheckout = lazy(() => import('../../views/apps/ecommerce/checkout'))
 
 const Services = lazy(() => import("../../views/services/Services"))
+const ReservationForm = lazy(() => import("../../views/customerDashboard/reservationForm"))
+const MyReservations = lazy(() => import("../../views/customerDashboard/myReservation"))
+const MyOrders = lazy(() => import("../../views/customerDashboard/myOrders"))
+const MyProfile = lazy(() => import("../../views/customerDashboard/myProfile"))
+const MyQueries = lazy(() => import("../../views/customerDashboard/myQueries"))
 
-const AddNewPlace = lazy(() => import("../../views/places/add_new_place"))
 const Login = lazy(() => import("../../views/Login"))
 const Register = lazy(() => import("../../views/Register"))
 const ForgotPassword = lazy(() => import("../../views/ForgotPassword"))
+
+const AdminDashboard = lazy(() => import("../../views/adminPanel/dashboard/dashboard"))
+const AdminMealsManage = lazy(() => import("../../views/adminPanel/meals/meals"))
+const AdminRestaurantsManage = lazy(() => import("../../views/adminPanel/restaurant/restaurant"))
+const AdminFacilitiesManage = lazy(() => import("../../views/adminPanel/facility/facility"))
+const AdminUsersManage = lazy(() => import("../../views/adminPanel/users/index"))
+const Customers = lazy(() => import("../../views/adminPanel/customers/customer"))
+const AdminPaymentsManage = lazy(() => import("../../views/adminPanel/payments"))
+const AdminReportsManage = lazy(() => import("../../views/adminPanel/reports"))
+const AdminReservations = lazy(() => import("../../views/adminPanel/reservation"))
+
+const ReportsSummary = lazy(() => import("../../views/adminPanel/reports/summery"))
+const ReportsDetail = lazy(() => import("../../views/adminPanel/reports/details"))
 
 // ** Merge Routes
 const Routes = [
@@ -61,35 +76,35 @@ const Routes = [
     element: <MenuDetails />,
     children: [{ path: ':menuId', element: <MenuDetails /> }]
   },
-/*  {
-    path: constant.MEALS_PATH,
-    element: <Meals />
-  },*/
   {
     path: constant.SHOP_PATH,
-    element: <EcommerceShop />,
+    element: <MealsShop />,
     meta: {
+      layout: "vertical",
       className: 'ecommerce-application'
     }
   },
   {
-    path: '/apps/ecommerce/product-detail',
-    element: <Navigate to='/apps/ecommerce/product-detail/apple-i-phone-11-64-gb-black-26' />,
+    path: constant.SHOP_PRODUCTS_DETAILS_PATH,
+    element: <Navigate to='/apps/meals/product-detail/sample' />,
     meta: {
+      layout: "vertical",
       className: 'ecommerce-application'
     }
   },
   {
-    path: '/apps/ecommerce/product-detail/:product',
-    element: <EcommerceDetail />,
+    path: constant.SPECIFIC_PRODUCT_DETAILS_PATH,
+    element: <MealsDetail />,
     meta: {
+      layout: "vertical",
       className: 'ecommerce-application'
     }
   },
   {
-    path: '/apps/ecommerce/checkout',
-    element: <EcommerceCheckout />,
+    path: constant.MEALS_CHECKOUT,
+    element: <MealsCheckout />,
     meta: {
+      layout: "vertical",
       className: 'ecommerce-application'
     }
   },
@@ -98,13 +113,108 @@ const Routes = [
     element: <Services />
   },
   {
+    path: constant.RESERVATION_FORM_PATH,
+    element: <ReservationForm />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.ALL_RESERVATIONS_PATH,
+    element: <MyReservations />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.MY_PROFILE_PATH,
+    element: <MyProfile />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.MY_ORDERS_PATH,
+    element: <MyOrders />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.MY_QUERIES_PATH,
+    element: <MyQueries />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
     path: constant.CATEGORY_PATH,
     element: <Category />,
     children: [{ path: ':categoryTitle', element: <Category /> }]
   },
+  
   {
-    path: constant.ADD_NEW_PLACE_PATH,
-    element: <AddNewPlace/>
+    path: constant.ADMIN_DASHBOARD_PATH,
+    element: <AdminDashboard />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.ADMIN_MANAGE_MEALS_PATH,
+    element: <AdminMealsManage />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.ADMIN_MANAGE_RESTAURANT_PATH,
+    element: <AdminRestaurantsManage />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.ADMIN_MANAGE_FACILITY_PATH,
+    element: <AdminFacilitiesManage />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.USER_MANAGE_PATH,
+    element: <AdminUsersManage />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.CUSTOMERS_PATH,
+    element: <Customers />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.PAYMENTS_PATH,
+    element: <AdminPaymentsManage />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.REPORTS_PATH,
+    element: <AdminReportsManage />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.QUERIES_PATH,
+    element: <AdminReservations />,
+    meta: {
+      layout: "vertical"
+    }
   },
   {
     path: "/login",

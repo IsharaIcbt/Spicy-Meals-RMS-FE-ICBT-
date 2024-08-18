@@ -1,0 +1,32 @@
+@import "../../../../assets/scss/common/colors.scss";
+
+//--------------- Advance Cards ---------------
+//---------------------------------------------
+
+// Congratulations Card
+.card-congratulations {
+  background: linear-gradient(118deg, rgba(#FFAC5D, 1), rgba(#FFAC5D, 0.7));
+  color: $white;
+
+  // image on left
+  .congratulations-img-left {
+    width: 220px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+
+  }
+  // image on right
+  .congratulations-img-right {
+    width: 175px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+  }
+
+  .avatar {
+    margin-bottom: 2rem;
+  }
+}

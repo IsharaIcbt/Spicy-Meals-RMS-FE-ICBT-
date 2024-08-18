@@ -34,5 +34,3 @@ export async function getUserById(userId) {
   return await ApiService.callApi(apiObject)
 }
 
-
-

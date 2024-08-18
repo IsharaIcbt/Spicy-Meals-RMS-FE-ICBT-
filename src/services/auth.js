@@ -1,4 +1,5 @@
 import ApiService from './apiService'
+import qs from "qs"
 
 
 export async function renewToken(token) {
@@ -13,3 +14,14 @@ export async function renewToken(token) {
     return await ApiService.callApi(apiObject)
 }
 
+export async function loginUser(userCredentials) {
+    const apiObject = {}
+    apiObject.method = 'POST'
+    apiObject.authentication = false
+    apiObject.endpoint = 'oauth/token'
+    apiObject.isBasicAuth = true
+    apiObject.urlencoded = true
+    apiObject.body = qs.stringify(userCredentials)
+    apiObject.type = "AUTH"
+    return await ApiService.callApi(apiObject)
+}

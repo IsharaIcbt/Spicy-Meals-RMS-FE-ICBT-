@@ -11,9 +11,7 @@ import Select from "react-select"
 
 
 import { useNavigate } from "react-router-dom"
-import { PLACES_PATH_FILTER } from "@src/router/routes/route-constant"
 import { validatePlaceSearchDetails } from "@src/utility/validation"
-import { searchPlaceByTag_Min_Max } from "@src/services/place"
 import { useState } from "react"
 import Gallery from "@src/views/home/gallery/Gallery"
 import SwiperAutoplay from "@src/views/home/SwiperAutoplay"
@@ -68,7 +66,7 @@ const Home = () => {
   const apiHandlerForSearch = () => {
     if (validatePlaceSearchDetails(form)) {
 
-      searchPlaceByTag_Min_Max(createPlaceForSearch(form))
+ /*     searchPlaceByTag_Min_Max(createPlaceForSearch(form))
         .then((response) => {
           if (response.data) {
             navigate(PLACES_PATH_FILTER, {
@@ -78,7 +76,7 @@ const Home = () => {
         })
         .catch((error) => {
           console.error("API Request Error:", error.message)
-        })
+        })*/
     }
   }
 

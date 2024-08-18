@@ -1,114 +1,114 @@
 // ** React Imports
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 // ** Store & Actions
-import { useSelector, useDispatch } from "react-redux";
-import { handleMenuHidden, handleContentWidth } from "@store/layout";
+import { useSelector, useDispatch } from "react-redux"
+import { handleMenuHidden, handleContentWidth } from "@store/layout"
 
 // ** Third Party Components
-import classnames from "classnames";
-import { ArrowUp } from "react-feather";
+import classnames from "classnames"
+import { ArrowUp } from "react-feather"
 
 // ** Reactstrap Imports
-import { Navbar, NavItem, Button } from "reactstrap";
+import { Navbar, NavItem, Button } from "reactstrap"
 
 // ** Configs
-import themeConfig from "@configs/themeConfig";
+import themeConfig from "@configs/themeConfig"
 
 // ** Custom Components
 
-import Customizer from "@components/customizer";
-import ScrollToTop from "@components/scrolltop";
-import NavbarComponent from "./components/navbar";
-import FooterComponent from "./components/footer";
-import MenuComponent from "./components/menu/horizontal-menu";
+import Customizer from "@components/customizer"
+import ScrollToTop from "@components/scrolltop"
+import NavbarComponent from "./components/navbar"
+import FooterComponent from "./components/footer"
+import MenuComponent from "./components/menu/horizontal-menu"
 
 // ** Custom Hooks
-import { useRTL } from "@hooks/useRTL";
-import { useSkin } from "@hooks/useSkin";
-import { useLayout } from "@hooks/useLayout";
-import { useNavbarType } from "@hooks/useNavbarType";
-import { useFooterType } from "@hooks/useFooterType";
-import { useNavbarColor } from "@hooks/useNavbarColor";
+import { useRTL } from "@hooks/useRTL"
+import { useSkin } from "@hooks/useSkin"
+import { useLayout } from "@hooks/useLayout"
+import { useNavbarType } from "@hooks/useNavbarType"
+import { useFooterType } from "@hooks/useFooterType"
+import { useNavbarColor } from "@hooks/useNavbarColor"
 
 // ** Styles
-import "@styles/base/core/menu/menu-types/horizontal-menu.scss";
+import "@styles/base/core/menu/menu-types/horizontal-menu.scss"
 
 const HorizontalLayout = (props) => {
   // ** Props
-  const { navbar, menuData, footer, children, menu } = props;
+  const { navbar, menuData, footer, children, menu } = props
 
   // ** Hooks
-  const { skin, setSkin } = useSkin();
-  const [isRtl, setIsRtl] = useRTL();
-  const { navbarType, setNavbarType } = useNavbarType();
-  const { footerType, setFooterType } = useFooterType();
-  const { navbarColor, setNavbarColor } = useNavbarColor();
-  const { layout, setLayout, setLastLayout } = useLayout();
+  const { skin, setSkin } = useSkin()
+  const [isRtl, setIsRtl] = useRTL()
+  const { navbarType, setNavbarType } = useNavbarType()
+  const { footerType, setFooterType } = useFooterType()
+  const { navbarColor, setNavbarColor } = useNavbarColor()
+  const { layout, setLayout, setLastLayout } = useLayout()
 
   // ** States
-  const [isMounted, setIsMounted] = useState(false);
-  const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false)
+  const [navbarScrolled, setNavbarScrolled] = useState(false)
 
   // ** Store Vars
-  const dispatch = useDispatch();
-  const layoutStore = useSelector((state) => state.layout);
+  const dispatch = useDispatch()
+  const layoutStore = useSelector((state) => state.layout)
 
   // ** Vars
-  const contentWidth = layoutStore.contentWidth;
-  const isHidden = layoutStore.menuHidden;
+  const contentWidth = layoutStore.contentWidth
+  const isHidden = layoutStore.menuHidden
 
   // ** Handles Content Width
-  const setContentWidth = (val) => dispatch(handleContentWidth(val));
+  const setContentWidth = (val) => dispatch(handleContentWidth(val))
 
   // ** Handles Content Width
-  const setIsHidden = (val) => dispatch(handleMenuHidden(val));
+  const setIsHidden = (val) => dispatch(handleMenuHidden(val))
 
   // ** UseEffect Cleanup
   const cleanup = () => {
-    setIsMounted(false);
-    setNavbarScrolled(false);
-  };
+    setIsMounted(false)
+    setNavbarScrolled(false)
+  }
 
   //** ComponentDidMount
   useEffect(() => {
-    setIsMounted(true);
+    setIsMounted(true)
     window.addEventListener("scroll", function () {
       if (window.pageYOffset > 65 && navbarScrolled === false) {
-        setNavbarScrolled(true);
+        setNavbarScrolled(true)
       }
       if (window.pageYOffset < 65) {
-        setNavbarScrolled(false);
+        setNavbarScrolled(false)
       }
-    });
-    return () => cleanup();
-  }, []);
+    })
+    return () => cleanup()
+  }, [])
 
   // ** Vars
   const footerClasses = {
     static: "footer-static",
     sticky: "footer-fixed",
-    hidden: "footer-hidden",
-  };
+    hidden: "footer-hidden"
+  }
 
   const navbarWrapperClasses = {
     floating: "navbar-floating",
     sticky: "navbar-sticky",
-    static: "navbar-static",
-  };
+    static: "navbar-static"
+  }
 
   const navbarClasses = {
     floating:
       contentWidth === "boxed" ? "floating-nav container-xxl" : "floating-nav",
-    sticky: "fixed-top",
-  };
+    sticky: "fixed-top"
+  }
 
   const bgColorCondition =
-    navbarColor !== "" && navbarColor !== "light" && navbarColor !== "white";
+    navbarColor !== "" && navbarColor !== "light" && navbarColor !== "white"
 
   if (!isMounted) {
-    return null;
+    return null
   }
 
   return (
@@ -126,7 +126,7 @@ const HorizontalLayout = (props) => {
         className={classnames(
           "header-navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center",
           {
-            "navbar-scrolled": navbarScrolled,
+            "navbar-scrolled": navbarScrolled
           }
         )}
       >
@@ -230,6 +230,6 @@ const HorizontalLayout = (props) => {
         </div>
       ) : null}
     </div>
-  );
-};
-export default HorizontalLayout;
+  )
+}
+export default HorizontalLayout

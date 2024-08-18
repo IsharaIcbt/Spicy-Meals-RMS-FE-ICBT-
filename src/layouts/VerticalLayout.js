@@ -1,23 +1,25 @@
-// ** React Imports
+// src/layouts/VerticalLayout.js
+
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-
-// ** Core Layout Import
-// !Do not remove the Layout import
 import Layout from "@layouts/VerticalLayout";
-
-// ** Menu Items Array
-import navigation from "@src/navigation/vertical";
+import { allRoutes } from "@src/navigation/vertical";
 
 const VerticalLayout = (props) => {
-  // const [menuData, setMenuData] = useState([])
+  const [filteredRoutes, setFilteredRoutes] = useState([]);
 
-  // ** For ServerSide navigation
-  // useEffect(() => {
-  //   axios.get(URL).then(response => setMenuData(response.data))
-  // }, [])
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("USER_OBJECT"));
+    const userRole = user?.userRole;
+
+    if (userRole) {
+      const routes = allRoutes.filter(route => route.roles.includes(userRole));
+      setFilteredRoutes(routes);
+    }
+  }, []);
 
   return (
-    <Layout menuData={navigation} {...props}>
+    <Layout menuData={filteredRoutes} {...props}>
       <Outlet />
     </Layout>
   );

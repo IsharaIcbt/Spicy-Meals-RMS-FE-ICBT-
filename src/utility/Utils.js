@@ -1,4 +1,5 @@
 import { DefaultRoute } from "../router/routes"
+import { USER_OBJECT } from "@src/router/RouteConstant";
 
 // ** Checks if an object is empty (returns boolean)
 export const isObjEmpty = (obj) => Object.keys(obj).length === 0
@@ -6,7 +7,7 @@ export const isObjEmpty = (obj) => Object.keys(obj).length === 0
 // ** Returns K format from a number
 export const kFormatter = (num) => (num > 999 ? `${(num / 1000).toFixed(1)}k` : num)
 
-export const isUserLoggedIn = () => localStorage.getItem('userData')
+export const isUserLoggedIn = () => localStorage.getItem(USER_OBJECT)
 
 export const getUserData = () => JSON.parse(localStorage.getItem("userData"))
 

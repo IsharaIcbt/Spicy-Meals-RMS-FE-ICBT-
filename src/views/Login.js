@@ -13,12 +13,17 @@ import { Button, CardText, CardTitle, Col, Form, Input, Label, Row } from "react
 import "@styles/react/pages/page-authentication.scss"
 import { Assets } from "@src/assets/images"
 import { useState } from "react"
-import { HOME_PATH } from "@src/router/routes/route-constant"
-import { IS_LOGIN, USER_LOGIN_DETAILS } from "@src/router/RouteConstant"
+import {
+  ADMIN_DASHBOARD_PATH,
+  RESERVATION_FORM_PATH
+} from "@src/router/routes/route-constant"
+import * as constants from "../../src/router/RouteConstant"
 import { validateLoginDetails } from "@src/utility/validation"
 import SpinnerComponent from "@components/spinner/Fallback-spinner"
-import { loginExistingClient } from "@src/services/user"
 import toast from "react-hot-toast"
+import { loginUser } from "@src/services/auth"
+import { LOGIN_PATH } from "@src/router/RouteConstant"
+
 
 const Login = () => {
 
@@ -30,7 +35,9 @@ const Login = () => {
 
   const createLoginUser = form => {
     return {
-      username: form.username ?? null, password: form.password ?? null
+      username: form.username ?? null,
+      password: form.password ?? null,
+      grant_type:"password"
     }
   }
 
@@ -44,19 +51,45 @@ const Login = () => {
   const apiHandler = () => {
     if (validateLoginDetails(form)) {
       setLoading(true)
-      loginExistingClient(createLoginUser(form))
+      loginUser(createLoginUser(form))
         .then(response => {
-          console.log("------------------->", response)
-          if (response.data) {
-            console.log("**********************>>>>>", response.data)
-            const userData = {
-              user_id: response.data.id, username: response.data.username, email: response.data.email
+
+          if (response && response.success !== false) {
+            const { access_token, refresh_token, user } = response
+
+            if (access_token && user) {
+              localStorage.setItem(constants.USER_OBJECT, JSON.stringify(user))
+              localStorage.setItem(constants.ACCESS_TOKEN, access_token)
+              localStorage.setItem(constants.REFRESH_TOKEN, refresh_token)
+              localStorage.setItem(constants.IS_LOGIN, user?.userRole)
+
+              switch (user.userRole) {
+                case "CUSTOMER":
+                  navigate(RESERVATION_FORM_PATH)
+                  toast.success("Login Successfully ...")
+                  break
+
+                case "STAFF":
+                  navigate(ADMIN_DASHBOARD_PATH)
+                  toast.success("Login Successfully ...")
+                  break
+
+                case "ADMIN":
+                  navigate(ADMIN_DASHBOARD_PATH)
+                  toast.success("Login Successfully ...")
+                  break
+
+
+                default:
+                  toast.error("Unknown user role.")
+                  break
+              }
+              
+            } else {
+              toast.error("Something went wrong. Please try again.")
             }
-            localStorage.setItem(IS_LOGIN, "USER")
-            localStorage.setItem(USER_LOGIN_DETAILS, JSON.stringify(userData))
-            navigate(HOME_PATH)
-            toast.success(response.message)
           } else {
+            navigate(LOGIN_PATH)
             toast.error(response.message)
           }
 

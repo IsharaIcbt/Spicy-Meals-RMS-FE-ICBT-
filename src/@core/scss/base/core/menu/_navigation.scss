@@ -116,7 +116,7 @@
       overflow-x: hidden;
       padding-bottom: 0.75rem;
       > li:first-child {
-        margin-top: 0.5rem;
+        margin-top: 2.2rem;
       }
     }
   }
@@ -133,9 +133,9 @@
 
 // Main Navigation
 .navigation {
-  font-size: 1.1rem;
+  font-size: 1.12rem;
   font-family: $font-family-monospace;
-  font-weight: 400;
+  font-weight: 500;
   overflow-y: hidden;
   padding-bottom: 20px;
 
@@ -151,6 +151,7 @@
   li {
     position: relative;
     white-space: nowrap;
+    padding-bottom: 15px;
 
     a {
       display: block;

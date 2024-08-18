@@ -7,6 +7,10 @@ import { Star, ShoppingCart, Zap } from "react-feather"
 
 // ** Reactstrap Imports
 import { Card, CardBody, CardText, Button, Badge } from 'reactstrap'
+import {
+  MEALS_CHECKOUT,
+  SHOP_PRODUCTS_DETAILS_PATH
+} from "@src/router/routes/route-constant";
 
 const ProductCards = props => {
   // ** Props
@@ -34,7 +38,7 @@ const ProductCards = props => {
 
   const cardImgStyles = {
     width: "100%",
-    height: "260px", // Adjust the height as needed
+    height: "210px", // Adjust the height as needed
     objectFit: "cover" // Ensures the image covers the entire area without distorting
   }
 
@@ -45,7 +49,7 @@ const ProductCards = props => {
       return products.map(item => {
         const CartBtnTag = item.isInCart ? Link : 'button'
         const handleButtonClick = () => {
-          navigate(`/apps/ecommerce/product-detail/${item.id}`)
+          navigate(`${SHOP_PRODUCTS_DETAILS_PATH}/${item.id}`)
         }
         return (
           <Card className='ecommerce-card' key={item.name}>
@@ -79,7 +83,7 @@ const ProductCards = props => {
                 </div>
               </div>
               <h6 className='item-name'>
-                <Link className='text-body' to={`/apps/ecommerce/product-detail/${item.id}`}>
+                <Link className='text-body' to={`${SHOP_PRODUCTS_DETAILS_PATH}/${item.id}`}>
                   {item.name}
                 </Link>
                 <CardText tag='span' className='item-company'>
@@ -120,7 +124,7 @@ const ProductCards = props => {
                 /*eslint-disable */
                 {...(item.isInCart
                   ? {
-                      to: '/apps/ecommerce/checkout'
+                      to: `${MEALS_CHECKOUT}`
                     }
                   : {})}
                 /*eslint-enable */

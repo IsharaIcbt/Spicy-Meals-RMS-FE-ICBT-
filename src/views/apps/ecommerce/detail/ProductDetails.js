@@ -1,5 +1,4 @@
 // ** React Imports
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 // ** Third Party Components
@@ -17,6 +16,7 @@ import {
   DropdownToggle,
   UncontrolledButtonDropdown
 } from 'reactstrap'
+import { MEALS_CHECKOUT } from "@src/router/routes/route-constant";
 
 const Product = props => {
   // ** Props
@@ -143,7 +143,7 @@ const Product = props => {
             /*eslint-disable */
             {...(data.isInCart
               ? {
-                to: '/apps/ecommerce/checkout'
+                to: `${MEALS_CHECKOUT}`
               }
               : {})}
             /*eslint-enable */

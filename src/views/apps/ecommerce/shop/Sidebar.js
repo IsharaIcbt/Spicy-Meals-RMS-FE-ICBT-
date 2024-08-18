@@ -244,7 +244,6 @@ const Sidebar = props => {
                               </li>
                             )
                           })}
-                          <li>& up</li>
                         </ul>
                       </a>
                       <div className='stars-received'>{item.total}</div>

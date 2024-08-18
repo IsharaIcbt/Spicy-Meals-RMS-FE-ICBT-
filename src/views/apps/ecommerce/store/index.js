@@ -180,7 +180,6 @@ const data = {
 export const getProducts = createAsyncThunk('appEcommerce/getProducts', async params => {
   // Extract parameters
   const { q = '', sortBy = 'featured', perPage = 9, page = 1 } = params
-
   const queryLowered = q.toLowerCase()
 
   // Filter products based on the query
@@ -224,8 +223,6 @@ export const getProducts = createAsyncThunk('appEcommerce/getProducts', async pa
 })
 
 export const getProduct = createAsyncThunk('appEcommerce/getProduct', async id => {
-
-
   const productId = Number(id)
 
   // Find the product by ID
@@ -237,9 +234,6 @@ export const getProduct = createAsyncThunk('appEcommerce/getProduct', async id =
     product.isInWishlist = data.userWishlist.findIndex(p => p.productId === product.id) > -1
     product.isInCart = data.userCart.findIndex(p => p.productId === product.id) > -1
 
-    // Add Dummy data for details page
-    product.colorOptions = ['primary', 'success', 'warning', 'danger', 'info']
-
     return { product }
   } else {
     throw new Error('Product not found')
@@ -247,7 +241,6 @@ export const getProduct = createAsyncThunk('appEcommerce/getProduct', async id =
 })
 
 export const addToCart = createAsyncThunk('appEcommerce/addToCart', async (id, { dispatch, getState }) => {
-
   const productId = id
 
   // Get the length of the user cart
@@ -276,10 +269,8 @@ export const getCartItems = createAsyncThunk('appEcommerce/getCartItems', async 
       const product = data.products.find(p => p.id === cartProduct.productId)
 
       if (!product) {
-        console.log("Product not found -- ", cartProduct.productId)
         return null
       }
-
       // Create a new object with additional properties
       return {
         ...product,
@@ -310,11 +301,9 @@ export const deleteCartItem = createAsyncThunk('appEcommerce/deleteCartItem', as
   // Find the product index by productId
   const productIndex = data.userCart.findIndex(i => i.productId === productId)
 
-
   // If the product exists, remove it from the cart
   if (productIndex > -1) {
     data.userCart.splice(productIndex, 1)
-
   }
 
   // Dispatch the getCartItems action to update the cart items
@@ -323,7 +312,6 @@ export const deleteCartItem = createAsyncThunk('appEcommerce/deleteCartItem', as
   // Return the id of the deleted product
   return id
 })
-
 
 export const updateCartItemQty = createAsyncThunk('appEcommerce/updateCartItemQty', async ({ id, qty }, { dispatch }) => {
   const productIndex = data.userCart.findIndex(i => i.productId === id)
@@ -336,16 +324,13 @@ export const updateCartItemQty = createAsyncThunk('appEcommerce/updateCartItemQt
 
 export const getWishlistItems = createAsyncThunk('appEcommerce/getWishlistItems', async () => {
   try {
-
     const products = data.userWishlist.map(wishlistProduct => {
 
       const product = data.products.find(p => p.id === wishlistProduct.productId)
 
       if (!product) {
-        console.log("Product not found -- ", wishlistProduct.productId)
         return null
       }
-
       return {
         ...product,
         isInCart: data.userCart.some(p => p.productId === wishlistProduct.productId)
@@ -355,7 +340,6 @@ export const getWishlistItems = createAsyncThunk('appEcommerce/getWishlistItems'
     // Return the products in the wishlist
     return { products }
   } catch (error) {
-    console.error("Error in getWishlistItems thunk -- ", error)
     throw error // Re-throw the error to handle it in the component or store
   }
 })
@@ -366,7 +350,6 @@ export const deleteWishlistItem = createAsyncThunk('appEcommerce/deleteWishlistI
   if (productIndex > -1) {
     data.userWishlist.splice(productIndex, 1)
   }
-
   // Dispatch the getWishlistItems action to update the state
   dispatch(getWishlistItems())
 
@@ -374,7 +357,6 @@ export const deleteWishlistItem = createAsyncThunk('appEcommerce/deleteWishlistI
 })
 
 export const addToWishlist = createAsyncThunk('appEcommerce/addToWishlist', async id => {
-
   const productId = Number(id)
   // Directly implement the logic to add an item to the wishlist
   const { length } = data.userWishlist
@@ -385,10 +367,7 @@ export const addToWishlist = createAsyncThunk('appEcommerce/addToWishlist', asyn
     id: lastId + 1,
     productId: Number(productId)
   })
-
-
   return id
-
 })
 
 

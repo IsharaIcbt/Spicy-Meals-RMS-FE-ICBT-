@@ -12,6 +12,7 @@ import { Card, CardBody, CardText, Button, Badge, InputGroup, Input, InputGroupT
 // ** Styles
 import '@styles/react/libs/input-number/input-number.scss'
 import { useEffect, useState } from "react"
+import { SHOP_PRODUCTS_DETAILS_PATH } from "@src/router/routes/route-constant";
 
 const Cart = props => {
   // ** Props
@@ -58,14 +59,14 @@ const Cart = props => {
       return (
         <Card key={item.name} className='ecommerce-card'>
           <div className='item-img'>
-            <Link to={`/apps/ecommerce/product-detail/${item.id}`}>
+            <Link to={`${SHOP_PRODUCTS_DETAILS_PATH}/${item.id}`}>
               <img className='img-fluid' src={item.image} alt={item.name} />
             </Link>
           </div>
           <CardBody>
             <div className='item-name'>
               <h6 className='mb-0'>
-                <Link to={`/apps/ecommerce/product-detail/${item.id}`}>{item.name}</Link>
+                <Link to={`${SHOP_PRODUCTS_DETAILS_PATH}/${item.id}`}>{item.name}</Link>
               </h6>
               <span className='item-company'>
                 <a className='ms-25 text-dark' href='/' onClick={e => e.preventDefault()}>

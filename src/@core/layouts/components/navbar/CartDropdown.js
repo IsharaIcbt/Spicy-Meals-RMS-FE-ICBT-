@@ -16,6 +16,7 @@ import { getCartItems, deleteCartItem, getProduct, updateCartItemQty } from '@sr
 
 // ** Styles
 import '@styles/react/libs/input-number/input-number.scss'
+import { MEALS_CHECKOUT, SHOP_PRODUCTS_DETAILS_PATH } from "@src/router/routes/route-constant";
 
 const CartDropdown = () => {
   // ** State
@@ -87,7 +88,7 @@ const CartDropdown = () => {
                     <h6 className='cart-item-title'>
                       <Link
                         className='text-body'
-                        to={`/apps/ecommerce/product-detail/${item.id}`}
+                        to={`${SHOP_PRODUCTS_DETAILS_PATH}/${item.id}`}
                         onClick={() => handleDropdownItemClick(item.id)}
                       >
                         {item.name}
@@ -115,7 +116,7 @@ const CartDropdown = () => {
               <h6 className='fw-bolder mb-0'>Total:</h6>
               <h6 className='text-primary fw-bolder mb-0'>RS.{calculateTotal().toFixed(2)}</h6>
             </div>
-            <Button tag={Link} to='/apps/ecommerce/checkout' color='primary' block onClick={toggle}>
+            <Button tag={Link} to={`${MEALS_CHECKOUT}`} color='primary' block onClick={toggle}>
               Checkout
             </Button>
           </li>

@@ -56,10 +56,17 @@ export const allRoutes = [
     roles: ["ADMIN"]
   },
   {
-    id: "queries",
-    title: "Manage Queries",
+    id: "reservations",
+    title: "Reservations",
     icon: <Mail size={25} />,
-    navLink: "/adminPanel/queries",
+    navLink: "/adminPanel/reservation",
+    roles: ["ADMIN", "STAFF"]
+  },
+  {
+    id: "reservations",
+    title: "Manage Orders",
+    icon: <Mail size={25} />,
+    navLink: "/adminPanel/orders",
     roles: ["ADMIN", "STAFF"]
   },
   {

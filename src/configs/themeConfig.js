@@ -6,7 +6,7 @@ import logo from "@src/assets/images/logo/logo.png"
 //Template config options
 const themeConfig = {
   app: {
-    appName: "Spicy Meals",
+    appName: "ABC Restaurant",
     appLogoImage: logo
   },
   layout: {

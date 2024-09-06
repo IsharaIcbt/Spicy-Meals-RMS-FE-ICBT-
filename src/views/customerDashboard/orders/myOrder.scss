@@ -1,0 +1,60 @@
+.my-orders-container {
+    padding: 20px;
+}
+
+.order-list {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.order-card {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+}
+
+.image-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.order-image {
+    max-width: 120%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.details-col {
+    padding: 20px;
+}
+
+.order-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.actions-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+.order-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 15px;
+}

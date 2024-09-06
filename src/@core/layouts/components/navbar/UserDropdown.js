@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 
 // ** Custom Components
@@ -22,11 +22,11 @@ import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from
 import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-11.jpg'
 import { USER_OBJECT } from "@src/router/RouteConstant"
 import { removeLocalStorageValues } from "@src/utility/commonFun"
+import { HOME_PATH } from "@src/router/routes/route-constant";
 
 const UserDropdown = () => {
-  // ** Store Vars
-  const dispatch = useDispatch()
 
+  const navigate = useNavigate()
   // ** State
   const [userData, setUserData] = useState(null)
 
@@ -42,6 +42,7 @@ const UserDropdown = () => {
 
   const handleLogout = () => {
     removeLocalStorageValues()
+    navigate(HOME_PATH)
   }
   return (
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
@@ -55,25 +56,21 @@ const UserDropdown = () => {
         <Avatar img={userAvatar} imgHeight="40" imgWidth="40" status="online" />
       </DropdownToggle>
       <DropdownMenu end>
-        <DropdownItem tag={Link} to='/pages/profile'>
+        <DropdownItem>
           <User size={14} className='me-75' />
           <span className='align-middle'>Profile</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to='/apps/email'>
+        <DropdownItem >
           <Mail size={14} className='me-75' />
           <span className='align-middle'>Inbox</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to='/apps/todo'>
-          <CheckSquare size={14} className='me-75' />
-          <span className='align-middle'>Tasks</span>
-        </DropdownItem>
-        <DropdownItem tag={Link} to='/apps/chat'>
+        <DropdownItem>
           <MessageSquare size={14} className='me-75' />
           <span className='align-middle'>Chats</span>
         </DropdownItem>
         <DropdownItem divider />
 
-        <DropdownItem tag={Link} to='/home'>
+        <DropdownItem>
           <Power size={14} className='me-75' />
           <span className='align-middle' onClick={handleLogout}>Logout</span>
         </DropdownItem>

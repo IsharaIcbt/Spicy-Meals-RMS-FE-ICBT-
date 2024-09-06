@@ -11,13 +11,13 @@ import Select from "react-select"
 
 
 import { useNavigate } from "react-router-dom"
-import { validatePlaceSearchDetails } from "@src/utility/validation"
 import { useState } from "react"
 import Gallery from "@src/views/home/gallery/Gallery"
 import SwiperAutoplay from "@src/views/home/SwiperAutoplay"
 
 // ** Styles
 import SwiperCore, { Autoplay } from 'swiper'
+import { LOGIN_PATH } from "@src/router/RouteConstant";
 SwiperCore.use([Autoplay])
 const Home = () => {
 
@@ -56,28 +56,8 @@ const Home = () => {
     }))
   }
 
-  console.log("form print =====================> ", form)
-
-  const createPlaceForSearch = form => {
-    return {
-      tag: form.tag ?? null, minscore: form.minscore ?? null, maxscore: form.maxscore ?? null
-    }
-  }
   const apiHandlerForSearch = () => {
-    if (validatePlaceSearchDetails(form)) {
-
- /*     searchPlaceByTag_Min_Max(createPlaceForSearch(form))
-        .then((response) => {
-          if (response.data) {
-            navigate(PLACES_PATH_FILTER, {
-              state: { searchData: response.data.data } // Pass search results as state
-            })
-          }
-        })
-        .catch((error) => {
-          console.error("API Request Error:", error.message)
-        })*/
-    }
+    navigate(LOGIN_PATH)
   }
 
   return (<div className="home_page">
@@ -85,9 +65,9 @@ const Home = () => {
       {/* HOME BANNER PAGE  */}
       <div className="container-fluid " style={divStyle}>
         <Row className={"pt-5"}>
-          <small className={'text-white text-center'}>DISCOVER THE SPICY MEALS EXPERIENCE, A CULINARY JOURNEY</small>
-          <h1 className={"text-center text-white fw-bold"} style={{ fontSize: "7rem", fontWeight: "600" }}>Spicy
-            Meals</h1>
+          <small className={'text-white text-center'}>DISCOVER THE ABC RESTAURANT EXPERIENCE, A CULINARY JOURNEY</small>
+          <h1 className={"text-center text-white fw-bold"} style={{ fontSize: "7rem", fontWeight: "600" }}>ABC
+            Restaurant</h1>
           <h2 className={"text-center text-white"}> Let's Enjoy Favorite Restaurant Experience. </h2>
         </Row>
         <Card className="custom-card">
@@ -129,7 +109,7 @@ const Home = () => {
         <Row className={" pt-4 pb-2 introduction_page"}>
           <Col md={5} sm={12} lg={5} className={"m-0 p-0"}>
 
-            <h2 className={"text-start"}><span className="script">Welcome To Spicy Meals!</span><br />
+            <h2 className={"text-start"}><span className="script">Welcome To ABC Restaurant!</span><br />
               Who are we?</h2>
             <img src={Assets.logo_about} alt={"travel logo"} style={{ width: "20vw" }} />
           </Col>
@@ -139,11 +119,11 @@ const Home = () => {
               <h3 className={""} style={{ color: "#DD673F", fontWeight: 700 }}>Discover the Spicy Foods Experience, A
                 Culinary Journey</h3><br />
 
-              Welcome to Spicy Foods – Where Every Meal is a Celebration! At Spicy Meals, we go beyond merely serving
+              Welcome to Spicy Foods – Where Every Meal is a Celebration! At ABC Restaurant, we go beyond merely serving
               food we craft experiences that linger in your memory. Our commitment is to be more than just a restaurant
               – we
               want to be a destination where joy, warmth, and deliciousness come together.
-              Founded with the vision of becoming the largest restaurant chain in Sri Lanka, Spicy Meals is the
+              Founded with the vision of becoming the largest restaurant chain in Sri Lanka, ABC Restaurant is the
               brainchild of a team dedicated to redefining the dining experience.<br /><br />
 
               <h3 className={""} style={{ color: "#DD673F", fontWeight: 700 }}>Our Culinary Offering: A Symphony of
@@ -155,9 +135,9 @@ const Home = () => {
 
               <h3 className={""} style={{ color: "#DD673F", fontWeight: 700 }}>Your Destination for Joyful Memories</h3>
               <br />
-              Beyond the tantalizing tastes and aromas, Spicy Meals is a place where memories are made.
+              Beyond the tantalizing tastes and aromas, ABC Restaurant is a place where memories are made.
               Our team is not just here to serve; we're here to create moments of joy that extend beyond
-              the dining table. Every visit to Spicy Meals is an opportunity to escape the ordinary
+              the dining table. Every visit to ABC Restaurant is an opportunity to escape the ordinary
               and immerse yourself in a culinary experience like no other.
 
             </div>
@@ -180,7 +160,7 @@ const Home = () => {
             <h3 style={{color: "#DD673F", fontWeight: 700 , fontSize:'26px'}}className={"text-start pb-2 pt-1"}>
               <span className="script text-dark">Indulge in Our Latest Offers and Flavors!</span></h3><br />
 
-            <p style={{fontSize:'15px'}} className={'text-dark'}>At Spicy Meals, we are dedicated to providing a dynamic and exciting dining experience with our
+            <p style={{fontSize:'15px'}} className={'text-dark'}>At ABC Restaurant, we are dedicated to providing a dynamic and exciting dining experience with our
               ever-changing menu. To keep your dining experience fresh and full of surprises, we update our meal
               offerings weekly. Each week, our chefs curate a selection of new and seasonal dishes to ensure that
               there is always something new and delicious to try.
@@ -192,7 +172,7 @@ const Home = () => {
               adventure.
               <br /><br />
               <span className={"fw-bold"}>Don’t miss out on our weekly specials each meal is crafted to deliver exceptional taste and quality,
-                making every visit to Spicy Meals a delightful experience.</span></p>
+                making every visit to ABC Restaurant a delightful experience.</span></p>
           </Col>
           <Col md={7}>
             <Col sm="12">

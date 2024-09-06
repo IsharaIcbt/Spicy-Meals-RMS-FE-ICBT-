@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react"
 import NavbarUser from "./NavbarUser"
-import { FileText, Grid, Home, MapPin, PlusCircle } from "react-feather"
+import { AtSign, FileText, Grid, Home, MapPin, PlusCircle, User, UserPlus } from "react-feather";
 import { Col, Row } from "reactstrap"
 import themeConfig from "@configs/themeConfig"
 import {
+  CREATE_ACCOUNT_PATH,
   HOME_PATH, MENUS_PATH, RESERVATION_FORM_PATH,
   SERVICES_PATH, SHOP_PATH
-} from "@src/router/routes/route-constant"
+} from "@src/router/routes/route-constant";
 import { Link, useNavigate } from "react-router-dom"
 import "../../../../main.scss"
 import { routePathHandler } from "@store/routePath"
@@ -20,11 +21,11 @@ const ThemeNavbar = (props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [userStatus, setUserStatus] = useState(localStorage.getItem(IS_LOGIN))
-  const windowPath = useSelector((state) => state.routePath.pathName);
+  const windowPath = useSelector((state) => state.routePath.pathName)
 
   useEffect(() => {
-    setUserStatus(localStorage.getItem(IS_LOGIN));
-  }, [userStatus]);
+    setUserStatus(localStorage.getItem(IS_LOGIN))
+  }, [userStatus])
 
 
   const setWindowPathHandler = (path) => {
@@ -42,7 +43,7 @@ const ThemeNavbar = (props) => {
 
 
   return (<Fragment>
-    <Row className="bookmark-wrapper d-flex align-items-center" style={{ width: userStatus ? "79vw" : "100vw" }}>
+    <Row className="bookmark-wrapper d-flex align-items-center" style={{ width: userStatus ? "78vw" : "110vw" }}>
         {/*     <Col className="navbar-nav d-xl-none">
           <NavItem className="mobile-menu me-auto">
             <NavLink className="nav-menu-main menu-toggle hidden-xs is-active" onClick={() => setMenuVisibility(true)}>
@@ -62,7 +63,7 @@ const ThemeNavbar = (props) => {
             </Col>
             <Col md={9} style={{ marginTop: "8px" }}>
               <h2 className="brand-text  m-0 p-0" style={{ color: '#FF9F43', fontWeight:'900'}}>{themeConfig.app.appName}</h2>
-              <h4 className={"m-0 p-0"} style={{ color: 'rgba(47,34,27,0.94)', fontWeight:'600'}}>Restaurant</h4>
+              <h4 className={"m-0 p-0"} style={{ color: 'rgba(47,34,27,0.94)', fontWeight:'600'}}></h4>
             </Col>
           </Row>
         </Col>
@@ -105,30 +106,44 @@ const ThemeNavbar = (props) => {
                     <p>Our Menus</p>
                   </div>
                 </Link>
+                <Link
+                  to={CREATE_ACCOUNT_PATH}
+                  className={`top-wrapper ${windowPath === CREATE_ACCOUNT_PATH ? "top-wrapper-active" : ""}`}
+                  onClick={() => setWindowPathHandler(CREATE_ACCOUNT_PATH)}
+                >
+                  <div className="nav_itm">
+                    <User />
+                    <p>Login</p>
+                  </div>
+                </Link>
               </>
-            ):(
-              <Link
-                to={SHOP_PATH}
-                className={`top-wrapper ${windowPath === SHOP_PATH ? "top-wrapper-active" : ""}`}
-                onClick={() => setWindowPathHandler(SHOP_PATH)}
-              >
-                <div className={"nav_itm"}>
-                  <Grid />
-                  <p>Explore Meals</p>
-                </div>
-              </Link>
+            ) : (
+              <div className={userStatus === 'ADMIN' || userStatus === 'STAFF' ? 'd-none' : ''}>
+                <Link
+                  to={SHOP_PATH}
+                  className={`top-wrapper ${windowPath === SHOP_PATH ? "top-wrapper-active" : ""}`}
+                  onClick={() => setWindowPathHandler(SHOP_PATH)}
+                >
+                  <div className={"nav_itm"}>
+                    <Grid />
+                    <p>Explore Meals</p>
+                  </div>
+                </Link>
+              </div>
             )}
-
-            <Link
-              to={userStatus === "CUSTOMER" ? RESERVATION_FORM_PATH : LOGIN_PATH}
-              className={`top-wrapper ${windowPath === (userStatus === "CUSTOMER" ? RESERVATION_FORM_PATH : LOGIN_PATH) ? "top-wrapper-active" : ""}`}
-              onClick={handleAddNewPlaceClick}
-            >
+            <div className={userStatus === 'ADMIN' || userStatus === 'STAFF' ? 'd-none' : ''}>
+              <Link
+                to={userStatus === "CUSTOMER" ? RESERVATION_FORM_PATH : LOGIN_PATH}
+                className={`top-wrapper ${windowPath === (userStatus === "CUSTOMER" ? RESERVATION_FORM_PATH : LOGIN_PATH) ? "top-wrapper-active" : ""}`}
+                onClick={handleAddNewPlaceClick}
+              >
                 <div className={"nav_itm"}>
                   <PlusCircle />
                   <p>Make Reservation</p>
                 </div>
               </Link>
+            </div>
+
           </div>
         </Col>
 

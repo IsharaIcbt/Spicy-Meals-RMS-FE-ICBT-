@@ -1,51 +1,74 @@
 // ** Third Party Components
 import { useForm, Controller } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import Select from 'react-select'
 
 // ** Reactstrap Imports
 import { Form, Input, Card, Label, CardHeader, CardTitle, CardBody, CardText, Button, Row, Col } from 'reactstrap'
+import { getAllRestaurantsIds } from "@src/services/restaurants"
 
 const defaultValues = {
-  checkoutName: '',
-  checkoutCity: '',
-  checkoutState: '',
-  checkoutNumber: '',
-  checkoutFlatNo: '',
-  checkoutPincode: '',
-  checkoutLandmark: ''
+  fullName: '',
+  mobileNumber: '',
+  address: '',
+  restaurantId: ''
 }
 
-const Address = props => {
-  // ** Props
-  const { stepper } = props
+const Address = ({ stepper, updateFormData }) => {
 
-  // ** Vars
-  const {
-    control,
-    setError,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({ defaultValues })
+  // ** Local State
+  const [restaurantsOptions, setRestaurantsOptions] = useState([])
 
-  // ** On form submit if there are no errors then go to next step
+  // ** React Hook Form setup
+  const { control, setError, handleSubmit, formState: { errors } } = useForm({ defaultValues })
+
+  // Fetch restaurant IDs for select box
+  useEffect(() => {
+    fetchAllRestaurantsIds()
+  }, [])
+
+  const fetchAllRestaurantsIds = async () => {
+    try {
+      const response = await getAllRestaurantsIds()
+      if (response.success) {
+        const data = response.data.map(item => ({
+          value: item.value,
+          label: item.label
+        }))
+        setRestaurantsOptions(data)
+      }
+    } catch (error) {
+      console.error('Error fetching restaurants:', error)
+    }
+  }
+
+  // ** Handle form submit
   const onSubmit = data => {
-    if (Object.values(data).every(field => field.length > 0)) {
+    if (Object.values(data).every(field => field)) {
+      updateFormData('address', data)
       stepper.next()
     } else {
       for (const key in data) {
-        if (data[key].length === 0) {
+        if (!data[key]) {
           setError(key, {
-            type: 'manual'
+            type: 'manual',
+            message: 'This field is required'
           })
         }
       }
     }
   }
 
+  // Handle button click to trigger form submission
+  const handleClick = () => {
+    handleSubmit(onSubmit)()
+  }
+
   return (
-    <Form className='list-view product-checkout' onSubmit={handleSubmit(onSubmit)}>
+    <Form className='list-view product-checkout'>
       <Card>
         <CardHeader className='flex-column align-items-start'>
-          <CardTitle tag='h4'>Add New Address</CardTitle>
+          <CardTitle tag='h4'>Shipping Address</CardTitle>
           <CardText className='text-muted mt-25'>
             Be sure to check "Deliver to this address" when you have finished
           </CardText>
@@ -54,176 +77,91 @@ const Address = props => {
           <Row>
             <Col md='6' sm='12'>
               <div className='mb-2'>
-                <Label className='form-label' for='checkoutName'>
+                <Label className='form-label' for='fullName'>
                   Full Name:
                 </Label>
                 <Controller
                   control={control}
-                  name='checkoutName'
+                  name='fullName'
                   render={({ field }) => (
-                    <Input id='checkoutName' placeholder='John Doe' invalid={errors.checkoutName && true} {...field} />
+                    <Input
+                      id='fullName'
+                      placeholder='John Doe'
+                      invalid={!!errors.fullName}
+                      {...field}
+                    />
                   )}
                 />
               </div>
             </Col>
             <Col md='6' sm='12'>
               <div className='mb-2'>
-                <Label className='form-label' for='checkoutNumber'>
+                <Label className='form-label' for='mobileNumber'>
                   Mobile Number:
                 </Label>
                 <Controller
                   control={control}
-                  name='checkoutNumber'
+                  name='mobileNumber'
                   render={({ field }) => (
                     <Input
-                      type='number'
-                      id='checkoutNumber'
+                      type='text'
+                      id='mobileNumber'
                       placeholder='0123456789'
-                      invalid={errors.checkoutNumber && true}
+                      invalid={!!errors.mobileNumber}
                       {...field}
                     />
                   )}
                 />
               </div>
             </Col>
-            <Col md='6' sm='12'>
+            <Col md='12' sm='12'>
               <div className='mb-2'>
-                <Label className='form-label' for='checkoutFlatNo'>
-                  Flat, House No:
+                <Label className='form-label' for='address'>
+                  Address:
                 </Label>
                 <Controller
                   control={control}
-                  name='checkoutFlatNo'
+                  name='address'
                   render={({ field }) => (
                     <Input
-                      type='number'
-                      id='checkoutFlatNo'
-                      placeholder='9447 Glen Eagles Drive'
-                      invalid={errors.checkoutFlatNo && true}
+                      id='address'
+                      placeholder='1234 Elm Street'
+                      invalid={!!errors.address}
                       {...field}
                     />
                   )}
                 />
               </div>
             </Col>
-            <Col md='6' sm='12'>
+            <Col md='12' sm='12'>
               <div className='mb-2'>
-                <Label className='form-label' for='checkoutLandmark'>
-                  Landmark e.g. near apollo hospital:
+                <Label className='form-label' for='restaurantId'>
+                  Select Restaurant:
                 </Label>
                 <Controller
                   control={control}
-                  name='checkoutLandmark'
+                  name='restaurantId'
                   render={({ field }) => (
-                    <Input
-                      id='checkoutLandmark'
-                      placeholder='Near Apollo Hospital'
-                      invalid={errors.checkoutLandmark && true}
-                      {...field}
+                    <Select
+                      id='restaurantId'
+                      options={restaurantsOptions}
+                      className='react-select'
+                      classNamePrefix='select'
+                      value={restaurantsOptions.find(option => option.value === field.value)}
+                      onChange={option => field.onChange(option ? option.value : '')}
                     />
                   )}
                 />
-              </div>
-            </Col>
-            <Col md='6' sm='12'>
-              <div className='mb-2'>
-                <Label className='form-label' for='checkoutCity'>
-                  Town/City:
-                </Label>
-                <Controller
-                  control={control}
-                  name='checkoutCity'
-                  render={({ field }) => (
-                    <Input
-                      id='checkoutCity'
-                      placeholder='Los Angeles'
-                      invalid={errors.checkoutCity && true}
-                      {...field}
-                    />
-                  )}
-                />
-              </div>
-            </Col>
-            <Col md='6' sm='12'>
-              <div className='mb-2'>
-                <Label className='form-label' for='checkoutPincode'>
-                  Pincode:
-                </Label>
-                <Controller
-                  control={control}
-                  name='checkoutPincode'
-                  render={({ field }) => (
-                    <Input
-                      type='number'
-                      id='checkoutPincode'
-                      placeholder='201301'
-                      invalid={errors.checkoutPincode && true}
-                      {...field}
-                    />
-                  )}
-                />
-              </div>
-            </Col>
-            <Col md='6' sm='12'>
-              <div className='mb-2'>
-                <Label className='form-label' for='checkoutState'>
-                  State:
-                </Label>
-                <Controller
-                  control={control}
-                  name='checkoutState'
-                  render={({ field }) => (
-                    <Input
-                      id='checkoutState'
-                      placeholder='California'
-                      invalid={errors.checkoutState && true}
-                      {...field}
-                    />
-                  )}
-                />
-              </div>
-            </Col>
-            <Col md='6' sm='12'>
-              <div className='mb-2'>
-                <Label className='form-label' for='add-type'>
-                  Address Type:
-                </Label>
-                <Input type='select' name='add-type' id='add-type'>
-                  <option value='home'>Home</option>
-                  <option value='work'>Work</option>
-                </Input>
               </div>
             </Col>
             <Col sm='12'>
-              <Button type='submit' className='btn-next delivery-address' color='primary'>
+              <Button type='button' className='btn-next delivery-address' color='primary' onClick={handleClick}>
                 Save And Deliver Here
               </Button>
             </Col>
           </Row>
         </CardBody>
       </Card>
-      <div className='customer-card'>
-        <Card>
-          <CardHeader>
-            <CardTitle tag='h4'>John Doe</CardTitle>
-          </CardHeader>
-          <CardBody>
-            <CardText className='mb-0'>9447 Glen Eagles Drive</CardText>
-            <CardText>Lewis Center, OH 43035</CardText>
-            <CardText>UTC-5: Eastern Standard Time (EST)</CardText>
-            <CardText>202-555-0140</CardText>
-            <Button
-              block
-              type='button'
-              color='primary'
-              onClick={() => stepper.next()}
-              className='btn-next delivery-address mt-2'
-            >
-              Deliver To This Address
-            </Button>
-          </CardBody>
-        </Card>
-      </div>
     </Form>
   )
 }

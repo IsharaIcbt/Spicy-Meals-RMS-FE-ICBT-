@@ -16,7 +16,7 @@ import {
   DropdownToggle,
   UncontrolledButtonDropdown
 } from 'reactstrap'
-import { MEALS_CHECKOUT } from "@src/router/routes/route-constant";
+import { MEALS_CHECKOUT } from "@src/router/routes/route-constant"
 
 const Product = props => {
   // ** Props
@@ -93,7 +93,7 @@ const Product = props => {
           </a>
         </CardText>
         <div className='ecommerce-details-price d-flex flex-wrap mt-1'>
-          <h4 className='item-price me-1'>${data.price}</h4>
+          <h4 className='item-price me-1'>RS. {data.price}</h4>
           <ul className='unstyled-list list-inline'>
             {new Array(5).fill().map((listItem, index) => {
               return (
@@ -122,7 +122,7 @@ const Product = props => {
           ) : null}
           <li>
             <DollarSign size={19} />
-            <span>Discount available : <span className={'fw-bold text-danger'}>Rs.{data.discount}</span></span>
+            <span>Discount available : <span className={'fw-bold text-danger'}>{data.discount} %</span></span>
           </li>
         </ul>
         <hr />

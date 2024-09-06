@@ -35,10 +35,10 @@ const FooterPage = () => {
           <div className="row">
             <div className="col-md-3 footer-box">
               <p><b>
-                <Info size={20} /> Spicy Meals Restaurant App
+                <Info size={20} /> ABC Restaurant App
               </b></p>
               <p>
-                <small>Spicy Meals is an intuitive and personalized restaurant app designed to cater to your culinary
+                <small>ABC Restaurant is an intuitive and personalized restaurant app designed to cater to your culinary
                   cravings. Experience a seamless journey through our diverse menu, tailored to match
                   your taste and preferences</small>
               </p>
@@ -70,7 +70,7 @@ const FooterPage = () => {
 
             <div className="col-md-3 footer-box">
               <p className={"mb-2"}><Edit size={22} /><b> CONTACT US</b></p>
-              <p><MapPin size={17} /> Spicy Meals, Colombo</p>
+              <p><MapPin size={17} /> ABC Restaurant, Colombo</p>
               <p><Phone size={17} /> (+94)-123456789</p>
               <p><Headphones size={17} /> + 01 234 567 89</p>
               <p><Mail size={17} /> abcd@gmail.com</p>

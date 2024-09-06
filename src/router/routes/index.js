@@ -13,7 +13,7 @@ import PublicRoute from "@components/routes/PublicRoute"
 // ** Utils
 import { isObjEmpty } from "@utils"
 import * as constant from "./route-constant"
-import { HOME_PATH } from "./route-constant"
+import { HOME_PATH, ORDERS_DETAILS_PATH, RESERVATION_DETAILS_PATH } from "./route-constant";
 
 
 const getLayout = {
@@ -34,14 +34,17 @@ const MealsCheckout = lazy(() => import('../../views/apps/ecommerce/checkout'))
 
 const Services = lazy(() => import("../../views/services/Services"))
 const ReservationForm = lazy(() => import("../../views/customerDashboard/reservationForm"))
-const MyReservations = lazy(() => import("../../views/customerDashboard/myReservation"))
-const MyOrders = lazy(() => import("../../views/customerDashboard/myOrders"))
+const MyReservations = lazy(() => import("../../views/customerDashboard/orders/myReservation"))
+const MyOrders = lazy(() => import("../../views/customerDashboard/orders/myOrders"))
+const OrderDetails = lazy(() => import("../../views/customerDashboard/orders/reservationDetails/orderDetails"))
+const ReservationDetails = lazy(() => import("../../views/customerDashboard/orders/reservationDetails/reservationDetails"))
+
 const MyProfile = lazy(() => import("../../views/customerDashboard/myProfile"))
-const MyQueries = lazy(() => import("../../views/customerDashboard/myQueries"))
+const MyQueries = lazy(() => import("../../views/customerDashboard/faq/index"))
 
 const Login = lazy(() => import("../../views/Login"))
 const Register = lazy(() => import("../../views/Register"))
-const ForgotPassword = lazy(() => import("../../views/ForgotPassword"))
+const ForgotPassword = lazy(() => import("../../views/ForgotPasswordAndReset/ForgotPassword"))
 
 const AdminDashboard = lazy(() => import("../../views/adminPanel/dashboard/dashboard"))
 const AdminMealsManage = lazy(() => import("../../views/adminPanel/meals/meals"))
@@ -51,11 +54,12 @@ const AdminUsersManage = lazy(() => import("../../views/adminPanel/users/index")
 const Customers = lazy(() => import("../../views/adminPanel/customers/customer"))
 const AdminPaymentsManage = lazy(() => import("../../views/adminPanel/payments"))
 const AdminReportsManage = lazy(() => import("../../views/adminPanel/reports"))
-const AdminReservations = lazy(() => import("../../views/adminPanel/reservation"))
+const AdminReservations = lazy(() => import("../../views/adminPanel/ManageReservations/reservation"))
+const AdminOrders = lazy(() => import("../../views/adminPanel/manageOrders/orders"))
 
 const ReportsSummary = lazy(() => import("../../views/adminPanel/reports/summery"))
 const ReportsDetail = lazy(() => import("../../views/adminPanel/reports/details"))
-
+const ResetPassword = lazy(() => import("../../views/ForgotPasswordAndReset/ResetPassword"))
 // ** Merge Routes
 const Routes = [
   {
@@ -126,6 +130,21 @@ const Routes = [
       layout: "vertical"
     }
   },
+
+  {
+    path: constant.RESERVATION_DETAILS_PATH,
+    element: <ReservationDetails />,
+    meta: {
+      layout: "vertical"
+    }
+  }, {
+    path: constant.ORDERS_DETAILS_PATH,
+    element: <OrderDetails />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+
   {
     path: constant.MY_PROFILE_PATH,
     element: <MyProfile />,
@@ -210,8 +229,15 @@ const Routes = [
     }
   },
   {
-    path: constant.QUERIES_PATH,
+    path: constant.MANAGE_RESERVATION_PATH,
     element: <AdminReservations />,
+    meta: {
+      layout: "vertical"
+    }
+  },
+  {
+    path: constant.MANAGE_ORDERS_PATH,
+    element: <AdminOrders />,
     meta: {
       layout: "vertical"
     }
@@ -236,7 +262,14 @@ const Routes = [
     meta: {
       layout: "blank"
     }
-  }
+  },
+  {
+    path: constant.RESET_PASSWORD_PATH,
+    element: <ResetPassword />,
+    meta: {
+      layout: "blank"
+    }
+  },
 ]
 
 const getRouteMeta = (route) => {

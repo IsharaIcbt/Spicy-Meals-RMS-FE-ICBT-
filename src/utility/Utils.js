@@ -11,6 +11,19 @@ export const isUserLoggedIn = () => localStorage.getItem(USER_OBJECT)
 
 export const getUserData = () => JSON.parse(localStorage.getItem("userData"))
 
+export const getStatusBadgeColor = (status) => {
+  switch (status) {
+    case "APPROVED":
+      return "success"
+    case "DECLINED":
+      return "danger"
+    case "NEW":
+      return "info"
+    default:
+      return "secondary"
+  }
+}
+
 /**
  ** This function is used for demo purpose route navigation
  ** In real app you won't need this function because your app will navigate to same route for each users regardless of ability

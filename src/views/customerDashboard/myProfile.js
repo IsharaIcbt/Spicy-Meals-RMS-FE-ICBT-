@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap"
 import CardCongratulations from "@src/views/adminPanel/dashboard/Cards/CardCongratulations"
 import { isUserLoggedIn } from "@utils"
 import CardMeetup from "@src/views/adminPanel/dashboard/Cards/CardMeetup"
-import ChoosePlanCard from "@src/views/adminPanel/dashboard/Cards/ChoosePlanCard";
+import ChoosePlanCard from "@src/views/adminPanel/dashboard/Cards/ChoosePlanCard"
 
 function MyProfile() {
 

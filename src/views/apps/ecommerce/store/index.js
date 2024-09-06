@@ -3,178 +3,33 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 import { getRandomInt, paginateArray, randomDate, sortCompare, nextWeek, nextDay} from "@src/@fake-db/utils"
 import { Assets } from "@src/assets/images"
+import { getAllMeals } from "@src/services/meals"
 
 const data = {
-  products: [
-    {
-      id: 1,
-      name: 'Pot of Tea or Coffee',
-      description: 'A pot of freshly brewed tea or coffee, served with a selection of accompaniments including milk, sugar, and lemon.',
-      price: 400.0,
-      discount: 5.0,
-      image: Assets.cofee,
-      subCategory: 'TEA_COFFEE',
-      mainCategory: 'TEA_TIME',
-      mealType: 'SRI_LANKAN',
-      status: 'ACTIVE',
-      rating: 3,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 2,
-      name: 'Water Melon with Lime',
-      description: 'A refreshing drink made with fresh watermelon juice and a hint of lime, perfect for a hot day.',
-      price: 600.0,
-      discount: 0.0,
-      image: Assets.watermelon,
-      subCategory: 'FRESH_JUICE',
-      mainCategory: 'BREAKFAST',
-      mealType: 'SRI_LANKAN',
-      status: 'ACTIVE',
-      rating: 5,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 3,
-      name: 'Mongolian Rice',
-      description: 'A savory rice dish cooked with a mix of vegetables, eggs, and a variety of meats, seasoned with a special Mongolian sauce.',
-      price: 1400.0,
-      discount: 10.0,
-      image: Assets.mongoliyan,
-      subCategory: 'EXTRA',
-      mainCategory: 'DINNER',
-      mealType: 'SRI_LANKAN',
-      status: 'ACTIVE',
-      rating: 4,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 4,
-      name: 'Fruit Salad with Ice Cream',
-      description: 'A delightful mix of fresh seasonal fruits served with a scoop of vanilla ice cream and drizzled with a honey-lime dressing.',
-      price: 800.0,
-      discount: 5.0,
-      image: Assets.fruitesalad,
-      subCategory: 'DESSERT',
-      mainCategory: 'LUNCH',
-      mealType: 'SRI_LANKAN',
-      status: 'ACTIVE',
-      rating: 5,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 5,
-      name: 'Chicken Sandwich',
-      description: 'A delicious sandwich filled with grilled chicken, fresh lettuce, tomatoes, and a creamy mayonnaise sauce, served on a toasted bun.',
-      price: 900.0,
-      discount: 2.0,
-      image: Assets.sandwich,
-      subCategory: 'SANDWICH',
-      mainCategory: 'BREAKFAST',
-      mealType: 'FRENCH',
-      status: 'ACTIVE',
-      rating: 4,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 6,
-      name: 'Beef Spaghetti Carbonara',
-      description: 'A classic Italian pasta dish made with tender beef strips, creamy egg-based sauce, parmesan cheese, and a touch of black pepper.',
-      price: 1600.0,
-      discount: 5.0,
-      image: Assets.spaghetti,
-      subCategory: 'INTERNATIONAL',
-      mainCategory: 'LUNCH',
-      mealType: 'ITALIAN',
-      status: 'ACTIVE',
-      rating: 5,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 7,
-      name: 'Tom Yam Gong Soup',
-      description: 'A spicy and sour Thai soup with shrimp, mushrooms, and a blend of lemongrass, kaffir lime leaves, galangal, lime juice, fish sauce, and crushed chili peppers.',
-      price: 1200.0,
-      discount: 8.0,
-      image: Assets.soup,
-      subCategory: 'STARTERS_SOUP',
-      mainCategory: 'BREAKFAST',
-      mealType: 'FRENCH',
-      status: 'ACTIVE',
-      rating: 4,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 8,
-      name: 'Chicken Biriyani',
-      description: 'Aromatic basmati rice cooked with tender pieces of chicken, flavored with saffron, and a blend of spices, garnished with fried onions and fresh coriander.',
-      price: 1800.0,
-      discount: 11.0,
-      image: Assets.biriyani,
-      subCategory: 'BIRIYANI',
-      mainCategory: 'LUNCH',
-      mealType: 'INDIAN',
-      status: 'ACTIVE',
-      rating: 5,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 9,
-      name: 'Grilled Chicken Coated Mushroom Sauce',
-      description: 'Juicy grilled chicken breasts coated in a creamy mushroom sauce, served with a side of sautéed vegetables and mashed potatoes.',
-      price: 2000.0,
-      discount: 12.0,
-      image: Assets.chicken,
-      subCategory: 'CHICKEN',
-      mainCategory: 'DINNER',
-      mealType: 'SRI_LANKAN',
-      status: 'ACTIVE',
-      rating: 4,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 10,
-      name: 'Seafood & Herbs Salad',
-      description: 'A refreshing salad with a mix of seafood including shrimp, squid, and mussels, tossed with fresh herbs, greens, and a tangy dressing.',
-      price: 1500.0,
-      discount: 6.0,
-      image: Assets.salad,
-      subCategory: 'SALAD',
-      mainCategory: 'LUNCH',
-      mealType: 'SRI_LANKAN',
-      status: 'ACTIVE',
-      rating: 5,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    },
-    {
-      id: 11,
-      name: 'Grilled Pork Chop',
-      description: 'Succulent pork chops grilled to perfection, served with a smoky BBQ sauce, and accompanied by roasted vegetables and garlic bread.',
-      price: 2200.0,
-      discount: 15.0,
-      image: Assets.pork,
-      subCategory: 'BBQ',
-      mainCategory: 'DINNER',
-      mealType: 'SRI_LANKAN',
-      status: 'ACTIVE',
-      rating: 4,
-      createdDate: '2024-07-24T01:04:22.000+00:00',
-      updatedDate: '2024-07-24T01:05:07.000+00:00'
-    }
-  ],
+  products: [],
   userWishlist: [],
   userCart: []
 }
+
+
+async function fetchProducts() {
+  try {
+    const meals = await getAllMeals()
+
+    // Update the products array in the data object
+    data.products = meals.meals.map((item, index) => ({
+      ...item,
+      uniqueKey: `${item.id}-${index}` // Combine `id` and `index` to generate a unique key
+    }))
+
+    console.log('Updated products:', data.products)
+  } catch (error) {
+    console.error('Error fetching products:', error)
+  }
+}
+
+// Call the function to fetch and set the products data
+fetchProducts()
 
 
 export const getProducts = createAsyncThunk('appEcommerce/getProducts', async params => {

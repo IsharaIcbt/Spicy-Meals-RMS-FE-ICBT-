@@ -7,14 +7,14 @@ import { RESERVATION_FORM_PATH, SHOP_PATH } from "@src/router/routes/route-const
 const ChoosePlanCard = () => {
   const navigate = useNavigate()
   return (
-    <Card className='text-center shadow-sm'>
+    <Card className='text-center shadow-sm '>
       {/* Header Row */}
-      <CardHeader className='bg-light-warning text-white p-1'>
+      <div className='bg-light-warning text-white p-1'>
         <h4 className='mb-0'>Choose the Plan</h4>
-      </CardHeader>
+      </div>
 
       {/* Content Row */}
-      <CardBody className='p-4'>
+      <CardBody className='p-3'>
         <Row>
           {/* Image Column */}
           <Col md='6' className='d-flex justify-content-center align-items-center'>

@@ -35,7 +35,7 @@
 @include media-breakpoint-up(lg) {
   .faq-search {
     .card-body {
-      padding: 8rem !important;
+      padding: 4rem !important;
     }
   }
 }
@@ -44,7 +44,7 @@
 @include media-breakpoint-only(md) {
   .faq-search {
     .card-body {
-      padding: 6rem !important;
+      padding: 4rem !important;
     }
   }
 }

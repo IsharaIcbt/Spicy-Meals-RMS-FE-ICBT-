@@ -11,12 +11,11 @@ import { Card, CardBody, CardText, Button, Badge, InputGroup, Input, InputGroupT
 
 // ** Styles
 import '@styles/react/libs/input-number/input-number.scss'
-import { useEffect, useState } from "react"
-import { SHOP_PRODUCTS_DETAILS_PATH } from "@src/router/routes/route-constant";
+import React, { useEffect, useState } from "react"
+import { SHOP_PRODUCTS_DETAILS_PATH } from "@src/router/routes/route-constant"
 
-const Cart = props => {
-  // ** Props
-  const { products, stepper, deleteCartItem, dispatch } = props
+const Cart = ({ stepper, updateFormData, dispatch, products, deleteCartItem}) => {
+
 
   // ** Local state
   const [cartItems, setCartItems] = useState(products)
@@ -50,6 +49,20 @@ const Cart = props => {
       .replace(/_/g, ' ')
       .toLowerCase()
       .replace(/\b\w/g, char => char.toUpperCase())
+  }
+
+  // ** Function to transform cart items to the required format
+  const transformCartItems = () => {
+    return cartItems.map(item => ({
+      id: item.id,
+      qty: item.qty
+    }))
+  }
+
+  const handleSubmit = () => {
+    const items = transformCartItems()
+      updateFormData("items", items)
+      stepper.next()
   }
 
 
@@ -185,11 +198,12 @@ const Cart = props => {
                 block
                 color='primary'
                 disabled={!cartItems.length}
-                onClick={() => stepper.next()}
+                onClick={handleSubmit}
                 classnames='btn-next place-order'
               >
                 Place Order
               </Button>
+
             </div>
           </CardBody>
         </Card>

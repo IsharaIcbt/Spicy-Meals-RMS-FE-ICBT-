@@ -104,8 +104,9 @@ const Login = () => {
   }
 
   return (<>
-      {loading === true ? (<SpinnerComponent />) : (<div className="auth-wrapper auth-cover">
-          <Row className="auth-inner m-0">
+      {loading === true ? (<SpinnerComponent />) : (
+        <div className="auth-wrapper auth-cover">
+          <Row className="auth-inner m-0 p-0">
             <Col className="d-none d-lg-flex align-items-center m-0 p-0" lg="8" sm="12">
               <div className="w-100 d-lg-flex align-items-center justify-content-center">
                 <img className="img-fluid" style={{ width: "100%", height: "100vh", objectFit: "cover" }}
@@ -125,7 +126,7 @@ const Login = () => {
                 </div>
 
                 <CardTitle tag="h2" className="fw-bold mb-1">
-                  Welcome to Spicy Meals!
+                  Welcome to ABC Restaurant!
                 </CardTitle>
                 <CardText className="mb-2">
                   Please sign-in to your account and start the adventure

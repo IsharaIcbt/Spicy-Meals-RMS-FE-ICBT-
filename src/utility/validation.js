@@ -1,15 +1,43 @@
 import toast from "react-hot-toast"
-
 export const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
-export const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+export const EMAIL_REGEX =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 export const PASSWORD_REGEX = /^.{3,}$/
 export const NAME_REGEX = /^[A-z ]+$/
-
 const OTP_REGEX = /^.{5,}$/
-
 const MOBILE_REGEX = /^(0)[0-9]{9}$|^(07)[0-9]{8}$/
-
 export const SEARCH_SPACE_REGEXP = /\s+/g
+export const validateRegisterDetails = (state) => {
+  if (state.name.trim() === "" || !NAME_REGEX.test(state.name)) {
+    toast.error("Please enter a valid username")
+    return false
+  }
+  if (state.email.trim() === "" || !EMAIL_REGEX.test(state.email)) {
+    toast.error("Please enter a valid email address")
+    return false
+  }
+  if (state.password.trim() === "" || !PASSWORD_REGEX.test(state.password)) {
+    toast.error("Please enter a valid password")
+    return false
+  }
+  if (state.nic.trim() === "") {
+    toast.error("Please enter valid nic")
+    return false
+  }
+  if (state.phoneNumber.trim() === "" || !MOBILE_REGEX.test(state.phoneNumber)) {
+    toast.error("Please enter valid phone number")
+    return false
+  }
+  if (state.homeAddress.trim() === "") {
+    toast.error("Please enter valid address")
+    return false
+  }
+  if (state.user_img === null) {
+    toast.error("Please upload a valid image")
+    return false
+  }
+  return true
+}
 
 export const validateLoginDetails = (state) => {
   if (state.username.trim() === "" || !EMAIL_REGEX.test(state.username)) {
@@ -20,28 +48,10 @@ export const validateLoginDetails = (state) => {
     toast.error("Please enter valid password")
     return false
   }
+  return true
+}
 
-  return true
-}
-export const validateRegisterDetails = (state) => {
-  if (state.username.trim() === "" || !NAME_REGEX.test(state.username)) {
-    toast.error("Please enter valid user name")
-    return false
-  }
-  if (state.email.trim() === "" || !EMAIL_REGEX.test(state.email)) {
-    toast.error("Please enter valid email address")
-    return false
-  }
-  if (state.password.trim() === "" || !PASSWORD_REGEX.test(state.password)) {
-    toast.error("Please enter valid password")
-    return false
-  }
-  if (state.user_img === null) {
-    toast.error("Please enter valid file img")
-    return false
-  }
-  return true
-}
+
 
 /* ********************************************************************************************* */
 /** Validate user profile validations */
@@ -251,6 +261,93 @@ export const validateFacilityDetails = (form, isEdit) => {
     return false
   }
 
+  return true
+}
+
+export const validateReservation = (state) => {
+  if (!state.restaurantId || state.restaurantId === 0) {
+    toast.error("Please select a valid restaurant")
+    return false
+  }
+
+  if (state.name.trim() === "") {
+    toast.error("Please enter valid  name")
+    return false
+  }
+
+  if (state.email.trim() === "" || !EMAIL_REGEX.test(state.email)) {
+    toast.error("Please enter valid email address")
+    return false
+  }
+
+  if (state.phone.trim() === "" || !MOBILE_REGEX.test(state.phone)) {
+    toast.error("Please enter valid phone number")
+    return false
+  }
+
+  if (!state.reservationType || !state.reservationType.value) {
+    toast.error("Please select a valid reservation Type")
+    return false
+  }
+
+  const seats = parseInt(state.seats, 10)
+
+  if (isNaN(seats) || seats <= 0 || seats > 100) {
+    toast.error("Please enter a valid seats count between 1 and 100")
+    return false
+  }
+
+  if (state.note.trim() === "") {
+    toast.error("Please enter valid note")
+    return false
+  }
+  return true
+}
+
+export const validateOrderDetails = (formData) => {
+  // Check if items array exists and is not empty
+  if (!formData.items || formData.items.length === 0) {
+    toast.error("Order must contain at least one item.")
+    return false
+  }
+
+  // Check if each item in the items array has valid id and qty
+  for (const item of formData.items) {
+    if (!item.id || isNaN(item.qty) || item.qty <= 0) {
+      toast.error("Each item must have a valid ID and quantity greater than zero.")
+      return false
+    }
+  }
+
+  // Check if address object exists
+  if (!formData.address) {
+    toast.error("Address information is required.")
+    return false
+  }
+
+  // Check if address fields are valid
+  const { address, fullName, mobileNumber, restaurantId } = formData.address
+  if (!address || address.trim() === "") {
+    toast.error("Address is required.")
+    return false
+  }
+
+  if (!fullName || fullName.trim() === "") {
+    toast.error("Full name is required.")
+    return false
+  }
+
+  if (!mobileNumber || !MOBILE_REGEX.test(mobileNumber)) { // Assuming a 10-digit mobile number
+    toast.error("A valid mobile number is required.")
+    return false
+  }
+
+  if (!restaurantId || isNaN(restaurantId)) {
+    toast.error("A valid restaurant ID is required.")
+    return false
+  }
+
+  // If all validations pass
   return true
 }
 

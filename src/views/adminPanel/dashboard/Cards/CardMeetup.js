@@ -14,7 +14,7 @@ import moment from "moment";
 const CardMeetup = () => {
 
   return (
-    <Card className='card-developer-meetup'>
+    <Card className='card-developer-meetup' style={{minHeight:'73vh'}}>
       <div className='meetup-img-wrapper rounded-top text-center'>
         <img src={illustration} height='250' />
       </div>
@@ -45,13 +45,7 @@ const CardMeetup = () => {
             <small>Manhattan, New york City</small>
           </div>
         </div>
-        <div className='d-flex mt-2'>
-          <Avatar color='light-primary' className='rounded me-1' icon={<MapPin size={18} />} />
-          <div>
-            <h6 className='mb-0'>Central Park</h6>
-            <small>Manhattan, New york City</small>
-          </div>
-        </div>
+
       </CardBody>
     </Card>
   )

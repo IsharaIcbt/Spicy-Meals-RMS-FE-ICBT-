@@ -9,6 +9,7 @@ import toast from "react-hot-toast"
 import RestaurantTable from "@src/views/adminPanel/restaurant/restaurantTable/restaurantTable"
 import { addNewRestaurant, findRestaurantById } from "@src/services/restaurants"
 
+
 const statusOptions = [
   { value: "ACTIVE", label: "Active" },
   { value: "INACTIVE", label: "Inactive" }
@@ -129,6 +130,7 @@ function Restaurant() {
       <ModalHeader className={'text-info'} toggle={() => {
         clearForm()
         setShow(!show)
+    
       }}> {isEdit ? "Update Restaurant" : "Create Restaurant"}</ModalHeader>
       <ModalBody>
         <Card>

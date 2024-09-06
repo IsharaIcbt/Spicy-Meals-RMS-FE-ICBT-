@@ -5,7 +5,7 @@ export async function createNewClient(userDetails) {
   const apiObject = {}
   apiObject.method = "POST"
   apiObject.authentication = false
-  apiObject.endpoint = "register"
+  apiObject.endpoint = "user/register"
   apiObject.isBasicAuth = false
   apiObject.urlencoded = false
   apiObject.multipart = true

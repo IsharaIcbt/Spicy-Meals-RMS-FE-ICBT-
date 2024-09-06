@@ -24,6 +24,7 @@ const Checkout = () => {
   // ** Ref & State
   const ref = useRef(null)
   const [stepper, setStepper] = useState(null)
+  const [formData, setFormData] = useState({})
 
   // ** Store Vars
   const dispatch = useDispatch()
@@ -34,6 +35,13 @@ const Checkout = () => {
     dispatch(getCartItems())
   }, [])
 
+  const updateFormData = (stepId, data) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [stepId]: data
+    }))
+  }
+
   const steps = [
     {
       id: 'cart',
@@ -43,9 +51,9 @@ const Checkout = () => {
       content: (
         <Cart
           stepper={stepper}
+          updateFormData={updateFormData}
           dispatch={dispatch}
           products={store.cart}
-          getCartItems={getCartItems}
           deleteCartItem={deleteCartItem}
         />
       )
@@ -55,14 +63,22 @@ const Checkout = () => {
       title: 'Address',
       subtitle: 'Enter Your Address',
       icon: <Home size={18} />,
-      content: <Address stepper={stepper} />
+      content:
+        <Address
+        stepper={stepper}
+        updateFormData={updateFormData}
+        />
     },
     {
       id: 'payment',
       title: 'Payment',
       subtitle: 'Select Payment Method',
       icon: <CreditCard size={18} />,
-      content: <Payment stepper={stepper} />
+      content:
+        <Payment
+          stepper={stepper}
+          formData={formData}
+        />
     }
   ]
 

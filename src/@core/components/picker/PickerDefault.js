@@ -12,7 +12,7 @@ const PickerDefault = ({ value, onChange }) => {
   return (
     <Fragment>
       <Flatpickr
-        className='form-control'
+        className='form-control bg-white'
         value={value}
         onChange={date => onChange(date[0])}
         placeholder={moment(new Date()).format("YYYY-MM-DD")}

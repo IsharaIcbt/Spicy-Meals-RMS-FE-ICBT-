@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react"
 
 // ** Table Columns
 
@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next'
 import DataTable from 'react-data-table-component'
 
 // ** Reactstrap Imports
-import { Card, CardHeader, CardTitle, Input, Label, Row, Col, Badge } from "reactstrap";
-import { getAllCustomers } from "@src/services/userManage";
-import moment from "moment";
+import { Card, CardHeader, CardTitle, Input, Label, Row, Col, Badge } from "reactstrap"
+import { getAllCustomers } from "@src/services/userManage"
+import moment from "moment"
 
 export const status = {
   ACTIVE: { title: 'Active', color: 'light-success' },

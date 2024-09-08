@@ -57,7 +57,7 @@ root.render(
             toastOptions={
               {
                 className: "react-hot-toast",
-                duration: 5000,
+                duration: 8000,
                 style:{
                   minWidth:'280px',
                   minHeight:'54px',

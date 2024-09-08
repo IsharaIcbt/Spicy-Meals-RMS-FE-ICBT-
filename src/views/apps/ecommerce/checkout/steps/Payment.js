@@ -4,14 +4,13 @@ import { Row, Col, Form, Label, Input, Button, Card, CardHeader, CardTitle, Card
 import { addNewMealOrder } from "@src/services/reservation"
 import toast from "react-hot-toast"
 import SpinnerComponent from "@components/spinner/Fallback-spinner"
-import { MY_ORDERS_PATH } from "@src/router/routes/route-constant";
-import { validateOrderDetails } from "@src/utility/validation";
+import { MY_ORDERS_PATH } from "@src/router/routes/route-constant"
+import { validateOrderDetails } from "@src/utility/validation"
 
 const Payment = ({ formData, stepper }) => {
   const [loading, setLoading] = useState(false)
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('credit-card') // Default to credit card
   const navigate = useNavigate()
-
 
   const createMealOrderRequest = (form) => {
     // Structure the form data according to your requirements
@@ -33,17 +32,21 @@ const Payment = ({ formData, stepper }) => {
   const handlePayment = () => {
     if (validateOrderDetails(formData)) {
       setLoading(true)
-
       const orderRequest = createMealOrderRequest(formData)
 
-      if (selectedPaymentMethod === 'payment-cod') {
+      if (selectedPaymentMethod === 'credit-card' || selectedPaymentMethod === 'payment-cod') {
         // Handle Cash on Delivery
         addNewMealOrder(orderRequest)
           .then((response) => {
             if (response.success) {
               toast.success("Your order has been successfully placed!")
-              // Optionally, navigate to a different page
-              navigate(MY_ORDERS_PATH)
+
+              // Open session link in a new tab
+              if (response.data?.sessionLink) {
+                window.location.href = response.data.sessionLink// Opens the Stripe session link in a new tab
+              } else {
+                navigate(MY_ORDERS_PATH)
+              }
             } else {
               toast.error(response.message || "Failed to place the order")
             }
@@ -83,35 +86,14 @@ const Payment = ({ formData, stepper }) => {
                 <CardText className='text-muted mt-25'>Be sure to click on the correct payment option</CardText>
               </CardHeader>
               <CardBody>
-                <h6 className='card-holder-name my-75'>John Doe</h6>
-                <div className='form-check mb-2'>
-                  <Input
-                    defaultChecked
-                    id='us-card'
-                    type='radio'
-                    name='paymentMethod'
-                    onChange={() => setSelectedPaymentMethod('credit-card')}
-                  />
-                  <Label className='form-check-label' htmlFor='us-card'>
-                    US Unlocked Debit Card 12XX XXXX XXXX 0000
-                  </Label>
-                </div>
-                <Row className='customer-cvv mt-1 row-cols-lg-auto'>
-                  <Col xs={3} className='d-flex align-items-center'>
-                    <Label className='mb-50' for='card-holder-cvv'>
-                      Enter CVV:
-                    </Label>
-                  </Col>
-                  <Col xs={4} className='p-0'>
-                    <Input className='input-cvv mb-50' id='card-holder-cvv' />
-                  </Col>
-                  <Col xs={3}>
-                    <Button className='btn-cvv mb-50' color='primary'>
-                      Continue
-                    </Button>
-                  </Col>
-                </Row>
+                <h6 className='card-holder-name my-75'> Full Name : {formData.address?.fullName || 'John Doe'}</h6>
+                <h6 className='card-holder-name my-75 mt-1'>Your Address   : {formData.address?.address || 'Colombo 05'}</h6>
+                <h6 className='card-holder-name my-75 mt-1'>Mobile No   : {formData.address?.mobileNumber || '(077)1234567'}</h6>
+
+
                 <hr className='my-2' />
+                <h5>Choose Your Payment Type</h5>
+                <hr/>
                 <ul className='other-payment-options list-unstyled'>
                   <li className='py-50'>
                     <div className='form-check'>
@@ -149,7 +131,7 @@ const Payment = ({ formData, stepper }) => {
               </CardBody>
             </Card>
           </div>
-          <div className='amount-payable checkout-options'>
+          <div className='amount-payable checkout-options d-none'>
             <Card>
               <CardHeader>
                 <CardTitle tag='h4'>Price Details</CardTitle>

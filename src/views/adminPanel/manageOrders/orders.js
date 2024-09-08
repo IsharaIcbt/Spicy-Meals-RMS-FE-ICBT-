@@ -52,7 +52,7 @@ const Orders = () => {
       name: "Created Date",
       selector: row => row.reservation.createdDate,
       sortable: true,
-      minWidth: "220px",
+      minWidth: "240px",
       cell: row => moment(row.reservation.createdDate).format("YYYY-MM-DD  h:mm a")
     },
     {
@@ -69,12 +69,12 @@ const Orders = () => {
     {
       name: "Actions",
       allowOverflow: true,
-      minWidth: "300px",
+      minWidth: "350px",
       cell: row => (
         <div>
           <Button color="primary" size="sm" onClick={() => handleRespond(row.reservation.id)}>Respond</Button>
-          <Button color="success" size="sm" onClick={() => handleApprove(row.reservation.id)}
-                  className="ms-2">Approve</Button>
+          <Button color="success" size="sm" onClick={() => handleApprove(row.reservation.id)} className="ms-1">Approve</Button>
+          <Button color="danger" size="sm" onClick={() => handleDeclined(row.reservation.id)} className="ms-1">Declined</Button>
         </div>
       )
     }
@@ -146,6 +146,10 @@ const Orders = () => {
 
   const handleApprove = id => {
     console.log("Approve button clicked for reservation ID:", id)
+  }
+
+  const handleDeclined = id => {
+    console.log("Declined button clicked for reservation ID:", id)
   }
 
   const handleReplySubmit = () => {

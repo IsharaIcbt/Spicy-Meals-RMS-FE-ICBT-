@@ -60,6 +60,8 @@ const AdminOrders = lazy(() => import("../../views/adminPanel/manageOrders/order
 const ReportsSummary = lazy(() => import("../../views/adminPanel/reports/summery"))
 const ReportsDetail = lazy(() => import("../../views/adminPanel/reports/details"))
 const ResetPassword = lazy(() => import("../../views/ForgotPasswordAndReset/ResetPassword"))
+const SuccessPage = lazy(() => import("../../views/apps/ecommerce/checkout/steps/successPage"))
+const ErrorPage = lazy(() => import("../../views/apps/ecommerce/checkout/steps/errorPage"))
 // ** Merge Routes
 const Routes = [
   {
@@ -107,6 +109,21 @@ const Routes = [
   {
     path: constant.MEALS_CHECKOUT,
     element: <MealsCheckout />,
+    meta: {
+      layout: "vertical",
+      className: 'ecommerce-application'
+    }
+  },  {
+    path: constant.PAYMENT_SUCCESS_PAGE,
+    element: <SuccessPage />,
+    meta: {
+      layout: "vertical",
+      className: 'ecommerce-application'
+    }
+  },
+  {
+    path: constant.PAYMENT_ERROR_PAGE,
+    element: <ErrorPage />,
     meta: {
       layout: "vertical",
       className: 'ecommerce-application'

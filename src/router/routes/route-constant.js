@@ -38,4 +38,6 @@ export const MEALS_CHECKOUT = `${ROUTE_PATH}/apps/meals/checkout`
 export const MENU_DETAILS_PATH = `${ROUTE_PATH}/menus/:menuId`
 
 export const RESET_PASSWORD_PATH = `${ROUTE_PATH}/reset-password`
+export const PAYMENT_SUCCESS_PAGE = `${ROUTE_PATH}/apps/meals/checkout/success/:id`
+export const PAYMENT_ERROR_PAGE = `${ROUTE_PATH}/apps/meals/checkout/error/:id`
 

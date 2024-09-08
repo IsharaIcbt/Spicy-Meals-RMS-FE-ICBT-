@@ -170,11 +170,7 @@ const Cart = ({ stepper, updateFormData, dispatch, products, deleteCartItem}) =>
                 </li>
                 <li className='price-detail'>
                   <div className='detail-title'>Bag Discount</div>
-                  <div className='detail-amt discount-amt text-success'>-25$</div>
-                </li>
-                <li className='price-detail'>
-                  <div className='detail-title'>Estimated Tax</div>
-                  <div className='detail-amt'>$1.3</div>
+                  <div className='detail-amt discount-amt text-success'>-0.00</div>
                 </li>
                 <li className='price-detail'>
                   <div className='detail-title'>EMI Eligibility</div>

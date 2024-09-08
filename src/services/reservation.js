@@ -72,3 +72,12 @@ export async function getSpecificQueriesForOrder(id) {
   apiObject.urlencoded = false
   return await ApiService.callApi(apiObject)
 }
+export async function sendBackOrderId(id) {
+  const apiObject = {}
+  apiObject.method = "POST"
+  apiObject.authentication = false
+  apiObject.endpoint = `reservation/payment/order/session/MEAL/${id}`
+  apiObject.multipart = false
+  apiObject.urlencoded = false
+  return await ApiService.callApi(apiObject)
+}

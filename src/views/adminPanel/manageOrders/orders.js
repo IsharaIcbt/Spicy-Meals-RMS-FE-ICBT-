@@ -359,7 +359,7 @@ const Orders = () => {
       </Modal>
       <Modal isOpen={approvalModal} toggle={() => setApprovalModal(false)}>
         <ModalHeader toggle={() => setApprovalModal(false)}>
-          {approvalStatus === 'APPROVED' ? 'Approve Reservation' : 'Decline Reservation'}
+          {approvalStatus === 'ACCEPTED' ? 'Approve Order' : 'Decline Order'}
         </ModalHeader>
         <ModalBody>
           <Input

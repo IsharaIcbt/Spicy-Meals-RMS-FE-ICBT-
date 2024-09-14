@@ -3,10 +3,17 @@ import ReactPaginate from "react-paginate"
 import DataTable from "react-data-table-component"
 import { Card, CardHeader, CardTitle, Input, Badge, Modal, ModalHeader, ModalBody, Button, Row, Col } from "reactstrap"
 import moment from "moment"
-import { getAllReservationsForStaff, getSpecificQueries, submitQueryForReservation } from "@src/services/reservation"
+import {
+  getAllReservationsForStaff,
+  getSpecificQueries,
+  submitQueryForReservation,
+  updateOperationStatusForReservation
+} from "@src/services/reservation";
 import './reservation.scss'
 import { Assets } from "@src/assets/images"
 import { getStatusBadgeColor, isUserLoggedIn } from "@utils"
+import toast from "react-hot-toast";
+import SpinnerComponent from "@components/spinner/Fallback-spinner";
 
 const Reservation = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -19,9 +26,16 @@ const Reservation = () => {
   const [replyMessage, setReplyMessage] = useState("")
   const [userData, setUserData] = useState(null)
 
+  const [approvalModal, setApprovalModal] = useState(false) // Modal for approval/decline
+  const [approvalStatus, setApprovalStatus] = useState("") // Track approve/decline status
+  const [approvalNote, setApprovalNote] = useState("") // Track note input for approval/decline
+
+  const [loading, setLoading] = useState(false)
+
+
   useEffect(() => {
     if (isUserLoggedIn() !== null) {
-      setUserData(JSON.parse(localStorage.getItem("USER_OBJECT")))
+      setUserData(JSON.parse(localStorage.getItem("USER_OBJECT"))) // that place get userId and user Role
     }
   }, [])
 
@@ -102,10 +116,6 @@ const Reservation = () => {
     </div>
   )
 
-  useEffect(() => {
-    fetchAllReservations()
-  }, [])
-
   const fetchAllReservations = () => {
     getAllReservationsForStaff().then(response => {
       const data = response.data.map((item, index) => ({
@@ -116,11 +126,26 @@ const Reservation = () => {
       setFilteredData(data)
     })
   }
+  useEffect(() => {
+    fetchAllReservations()
+  }, [])
 
   const handleRespond = id => {
     setSelectedReservationId(id)
     fetchQueries(id)
     toggleModal()
+  }
+
+  const handleApprove = id => {
+    setSelectedReservationId(id)
+    setApprovalStatus('APPROVED') // Set status to 'APPROVED'
+    setApprovalModal(true) // Open approval modal
+  }
+
+  const handleDeclined = id => {
+    setSelectedReservationId(id)
+    setApprovalStatus('DECLINED') // Set status to 'DECLINED'
+    setApprovalModal(true) // Open approval modal
   }
 
   const fetchQueries = async id => {
@@ -131,14 +156,6 @@ const Reservation = () => {
       console.error("Error fetching queries:", error)
       setQueries([])
     }
-  }
-
-  const handleApprove = id => {
-    console.log("Approve button clicked for reservation ID:", id)
-  }
-
-  const handleDeclined = id => {
-    console.log("Declined button clicked for reservation ID:", id)
   }
 
   const handleReplySubmit = () => {
@@ -168,6 +185,37 @@ const Reservation = () => {
 
   const toggleModal = () => {
     setModal(!modal)
+  }
+
+
+  const handleApprovalSubmit = () => {
+    setLoading(true) // Show loader
+
+    const userDetails = {
+      type: 'TABLE',
+      tableStatus: approvalStatus, // APPROVED or DECLINED
+      note: approvalNote, // Note from modal input
+      userId: userData.id,
+      userRole: userData.userRole,
+      orderId: selectedReservationId // Selected reservation id
+    }
+
+    updateOperationStatusForReservation(userDetails)
+      .then(response => {
+        setLoading(false) // Hide loader
+        if (response.success) {
+          setApprovalModal(false) // Close approval modal
+          fetchAllReservations() // Refresh reservations list
+          setApprovalNote("")// Clear note field
+          toast.success(`Reservation ${approvalStatus.toLowerCase()} successfully!`);
+        } else {
+          toast.error(`Error: ${response.message}`); // Show error toast
+        }
+      })
+      .catch(error => {
+        setLoading(false); // Hide loader
+        console.error("Error updating status:", error)
+      })
   }
 
   const handlePagination = page => {
@@ -224,6 +272,10 @@ const Reservation = () => {
   )
 
   return (
+    <>
+      {loading === true ? (
+        <SpinnerComponent />
+      ) : (
     <div className="reservation-container">
       <Card>
         <CardHeader>
@@ -297,7 +349,26 @@ const Reservation = () => {
           </div>
         </ModalBody>
       </Modal>
+        <Modal isOpen={approvalModal} toggle={() => setApprovalModal(false)}>
+      <ModalHeader toggle={() => setApprovalModal(false)}>
+        {approvalStatus === 'APPROVED' ? 'Approve Reservation' : 'Decline Reservation'}
+      </ModalHeader>
+      <ModalBody>
+        <Input
+          type="textarea"
+          placeholder="Add a note (optional)"
+          value={approvalNote}
+          onChange={e => setApprovalNote(e.target.value)}
+          rows="4"
+        />
+        <Button color="primary" className="mt-2" onClick={handleApprovalSubmit}>
+          Submit
+        </Button>
+      </ModalBody>
+    </Modal>
     </div>
+      )}
+    </>
   )
 }
 

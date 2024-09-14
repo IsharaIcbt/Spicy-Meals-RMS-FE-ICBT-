@@ -14,6 +14,7 @@ export const getUserData = () => JSON.parse(localStorage.getItem("userData"))
 export const getStatusBadgeColor = (status) => {
   switch (status) {
     case "APPROVED":
+    case "ACCEPTED":
       return "success"
     case "DECLINED":
       return "danger"

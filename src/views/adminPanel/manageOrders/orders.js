@@ -6,11 +6,13 @@ import moment from "moment"
 import {
   getAllOrdersForStaff,
   getSpecificQueriesForOrder,
-  submitQueryForReservation
-} from "@src/services/reservation"
+  submitQueryForReservation, updateOperationStatusForReservation
+} from "@src/services/reservation";
 import "./orders.scss"
 import { Assets } from "@src/assets/images"
 import { getStatusBadgeColor, isUserLoggedIn } from "@utils"
+import toast from "react-hot-toast";
+import SpinnerComponent from "@components/spinner/Fallback-spinner";
 
 const Orders = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -23,6 +25,11 @@ const Orders = () => {
   const [replyMessage, setReplyMessage] = useState("")
   const [userData, setUserData] = useState(null)
 
+  const [approvalModal, setApprovalModal] = useState(false) // Modal for approval/decline
+  const [approvalStatus, setApprovalStatus] = useState("") // Track approve/decline status
+  const [approvalNote, setApprovalNote] = useState("") // Track note input for approval/decline
+
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     if (isUserLoggedIn() !== null) {
       setUserData(JSON.parse(localStorage.getItem("USER_OBJECT")))
@@ -113,10 +120,6 @@ const Orders = () => {
     </div>
   )
 
-  useEffect(() => {
-    fetchAllOrders()
-  }, [])
-
   const fetchAllOrders = () => {
     getAllOrdersForStaff().then(response => {
       const data = response.data.map((item, index) => ({
@@ -128,10 +131,26 @@ const Orders = () => {
     })
   }
 
+  useEffect(() => {
+    fetchAllOrders()
+  }, [])
+
   const handleRespond = id => {
     setSelectedReservationId(id)
     fetchQueries(id)
     toggleModal()
+  }
+
+  const handleApprove = id => {
+    setSelectedReservationId(id)
+    setApprovalStatus('ACCEPTED') // Set status to 'APPROVED'
+    setApprovalModal(true) // Open approval modal
+  }
+
+  const handleDeclined = id => {
+    setSelectedReservationId(id)
+    setApprovalStatus('DECLINED') // Set status to 'DECLINED'
+    setApprovalModal(true) // Open approval modal
   }
 
   const fetchQueries = async id => {
@@ -144,13 +163,6 @@ const Orders = () => {
     }
   }
 
-  const handleApprove = id => {
-    console.log("Approve button clicked for reservation ID:", id)
-  }
-
-  const handleDeclined = id => {
-    console.log("Declined button clicked for reservation ID:", id)
-  }
 
   const handleReplySubmit = () => {
     if (!replyMessage.trim()) return
@@ -179,6 +191,36 @@ const Orders = () => {
 
   const toggleModal = () => {
     setModal(!modal)
+  }
+
+  const handleApprovalSubmit = () => {
+    setLoading(true) // Show loader
+
+    const userDetails = {
+      type: 'MEAL',
+      mealStatus: approvalStatus, // APPROVED or DECLINED
+      note: approvalNote, // Note from modal input
+      userId: userData.id,
+      userRole: userData.userRole,
+      orderId: selectedReservationId // Selected reservation id
+    }
+
+    updateOperationStatusForReservation(userDetails)
+      .then(response => {
+        setLoading(false) // Hide loader
+        if (response.success) {
+          setApprovalModal(false) // Close approval modal
+          fetchAllOrders() // Refresh reservations list
+          setApprovalNote("")// Clear note field
+          toast.success(`Order ${approvalStatus.toLowerCase()} successfully!`)
+        } else {
+          toast.error(`Error: ${response.message}`); // Show error toast
+        }
+      })
+      .catch(error => {
+        setLoading(false); // Hide loader
+        console.error("Error updating status:", error)
+      })
   }
 
   const handlePagination = page => {
@@ -235,6 +277,10 @@ const Orders = () => {
   )
 
   return (
+    <>
+      {loading === true ? (
+        <SpinnerComponent />
+      ) : (
     <div className="reservation-container">
       <Card>
         <CardHeader>
@@ -311,8 +357,26 @@ const Orders = () => {
           </div>
         </ModalBody>
       </Modal>
-
+      <Modal isOpen={approvalModal} toggle={() => setApprovalModal(false)}>
+        <ModalHeader toggle={() => setApprovalModal(false)}>
+          {approvalStatus === 'APPROVED' ? 'Approve Reservation' : 'Decline Reservation'}
+        </ModalHeader>
+        <ModalBody>
+          <Input
+            type="textarea"
+            placeholder="Add a note (optional)"
+            value={approvalNote}
+            onChange={e => setApprovalNote(e.target.value)}
+            rows="4"
+          />
+          <Button color="primary" className="mt-2" onClick={handleApprovalSubmit}>
+            Submit
+          </Button>
+        </ModalBody>
+      </Modal>
     </div>
+      )}
+    </>
   )
 }
 

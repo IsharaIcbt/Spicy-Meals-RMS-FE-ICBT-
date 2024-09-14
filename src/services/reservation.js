@@ -81,3 +81,13 @@ export async function sendBackOrderId(id) {
   apiObject.urlencoded = false
   return await ApiService.callApi(apiObject)
 }
+export async function updateOperationStatusForReservation(userDetails) {
+  const apiObject = {}
+  apiObject.method = "PATCH"
+  apiObject.authentication = false
+  apiObject.endpoint = `reservation/${userDetails.orderId}`
+  apiObject.multipart = false
+  apiObject.urlencoded = false
+  apiObject.body = userDetails
+  return await ApiService.callApi(apiObject)
+}
